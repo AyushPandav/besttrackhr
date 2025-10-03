@@ -1,0 +1,78 @@
+{
+  "name": "employee-management-system-frontend",
+  "displayName": "Employee Management System Frontend",
+  "version": "1.1.0",
+  "author": "Son Nguyen",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoangsonww/Employee-Management-Fullstack-App.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hoangsonww/Employee-Management-Fullstack-App/issues"
+  },
+  "homepage": "/",
+  "description": "The frontend of the Employee Management Fullstack App",
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^6.0.1",
+    "@mui/material": "^6.0.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "aos": "^2.3.4",
+    "axios": "^1.7.5",
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "chart.js": "^4.4.4",
+    "font-awesome": "^4.7.0",
+    "framer-motion": "^10.12.16",
+    "prettier": "^3.3.3",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.10",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "jest --config jest.config.js --runInBand",
+    "test:watch": "jest --config jest.config.js --watchAll",
+    "test:coverage": "jest --config jest.config.js --coverage",
+    "eject": "react-scripts eject",
+    "format": "prettier --config .prettierrc --write \"postcss.config.js\" \"tailwind.config.js\" \"src/components/*.{html,css,js,jsx,ts,tsx}\" \"src/services/*.{html,css,js,jsx,ts,tsx}\" \"src/tests/*.{html,css,js,jsx,ts,tsx}\" \"src/*.{html,css,js,jsx,ts,tsx}\""
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "autoprefixer": "^10.4.20",
+    "babel-jest": "^30.0.4",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.5.1",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10"
+  }
+}
