@@ -19,12 +19,17 @@ import Loginpage from './components/Loginpage';
 import RegisterPage from './components/Registerpage';
 import Hrhomepage from './Dashboard/HR_Dashboard/Hrhomepage';
 import AddDelUsers from './Dashboard/HR_Dashboard/AddDelUsers';
+import AddCalenders from './Dashboard/HR_Dashboard/AddCalender';
+import Dailyattendance from './Dashboard/HR_Dashboard/Dailyattendance';
+import Groupchat from './Dashboard/HR_Dashboard/Groupchat';
+import Dailyreport from './Dashboard/HR_Dashboard/Dailyreport';
+import Employeepage from './Dashboard/EmpDashboard/Employeepage';
 
 const AppContent = () => {
   const location = useLocation();
 
   // Pages where Navbar & Footer should be hidden
-  const hideLayout = ["/loginpage", "/registerpage", "/hradminpage", "/addusers"].includes(location.pathname);
+  const hideLayout = ["/loginpage", "/registerpage", "/hradmin/hradminpage", "/hradmin/addusers", "/hradmin/arrangecalender", "/hradmin/dailyattendance", "/hradmin/groupchat", "/hradmin/dailyreport", "/employee/emppage"].includes(location.pathname);
 
   return (
     <>
@@ -46,8 +51,13 @@ const AppContent = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/loginpage" element={<Loginpage />} />
           <Route path="/registerpage" element={<RegisterPage/>} />
-          <Route path="/hradminpage" element={<Hrhomepage/>} />
-          <Route path='/addusers' element={<AddDelUsers/>}  />
+          <Route path="/hradmin/hradminpage" element={<Hrhomepage/>} />
+          <Route path='/hradmin/addusers' element={<AddDelUsers/>}  />
+          <Route path='/hradmin/arrangecalender' element={<AddCalenders/>}  />
+          <Route path="/hradmin/dailyattendance" element={<Dailyattendance/>} />
+          <Route path="/hradmin/groupchat" element={<Groupchat/>} />
+          <Route path="/hradmin/dailyreport" element={<Dailyreport/>} />
+          <Route path="/employee/emppage" element={<Employeepage/>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Container>
