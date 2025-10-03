@@ -1,16 +1,34 @@
-
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
 function AddDelUsers() {
-const [date, setDate] = useState("");
-  const [text, setText] = useState("");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  // Form state
+  const [formData, setFormData] = useState({
+    username: "",
+    designation: "",
+    phone: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Selected Date:", date);
-    console.log("Entered Text:", text);
-    alert(`Date: ${date} | Text: ${text}`);
+    console.log("User Data:", formData);
+    // 👉 Here you can call API or update state with new user
+    setShow(false);
   };
 
   return (
@@ -23,39 +41,43 @@ const [date, setDate] = useState("");
         <div className="nav-menu">
           <div className="menu-heading">Main</div>
           <div className="nav-item active">
-                      <Link to="/hradminpage">
-                                <i className="fas fa-chart-pie"></i>
-                                <span>Dashboard</span>
-                              </Link>
-                    </div>
-                    <div className="nav-item">
-                      <Link to="/addusers" >
-                                <i className="fas fa-users"></i>
-                                <span>Add / Del Users</span>
-                              </Link>
-                    </div>
-                    <div className="nav-item">
-                      <Link to="#" >
-                                <i className="fas fa-boxes"></i>
-                                <span>Arrange Calender</span>
-                              </Link>
-                    </div>
-                    <div className="nav-item">
-                      <Link to="#" >
-                                <i className="fas fa-boxes"></i>
-                                <span>Group Chat</span>
-                              </Link>
-                    </div>
+            <Link to="/hradmin/hradminpage">
+              <i className="fas fa-chart-pie"></i>
+              <span>Dashboard</span>
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link to="/hradmin/addusers" >
+              <i className="fas fa-users"></i>
+              <span>Add / Del Users</span>
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link to="/hradmin/arrangecalender" >
+              <i className="fas fa-boxes"></i>
+              <span>Arrange Calender</span>
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link to="/hradmin/groupchat" >
+              <i className="fas fa-boxes"></i>
+              <span>Group Chat</span>
+            </Link>
+          </div>
 
           <div className="menu-heading">Reports</div>
-          <div className="nav-item">
-            <i className="fas fa-chart-line"></i>
-            <span>Daily Attendance</span>
-          </div>
-          <div className="nav-item">
-            <i className="fas fa-coins"></i>
-            <span>Daily Reports</span>
-          </div>
+          <div className="nav-item active">
+                      <Link to="/hradmin/dailyattendance">
+                        <i className="fas fa-boxes"></i>
+                        <span>Daily Attendance</span>
+                      </Link>
+                    </div>
+                    <div className="nav-item">
+                      <Link to="/hradmin/dailyreport">
+                        <i className="fas fa-boxes"></i>
+                        <span>Daily Reports</span>
+                      </Link>
+                    </div>
 
           <div className="menu-heading">Admin</div>
           <div className="nav-item">
@@ -106,66 +128,68 @@ const [date, setDate] = useState("");
             <button className="btn btn-outline">
               <i className="fas fa-download"></i> Users
             </button>
-            <button className="btn btn-primary">
+            <button className="btn btn-primary" onClick={handleShow}>
               <i className="fas fa-plus"></i> Add New
             </button>
           </div>
         </div>
 
-        {/* Stats Cards */}
-
-        <div className="row justify-content-center">
-      <div className="col-md-10">
-        <div className="card shadow-sm">
-          <div className="card-body p-4">
-            <h2 className="card-title text-center mb-4">Quick Input Form</h2>
-
-            {/* Bootstrap inline form */}
-            <form className="row g-2 align-items-center" onSubmit={handleSubmit}>
-              {/* Date input */}
-              <div className="col-md-4">
-                <input
-                  type="date"
-                  className="form-control"
-                  id="dateInput"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  required
-                />
-              </div>
-
-              {/* Text input */}
-              <div className="col-md-5">
-                <input
+        {/* Modal with Form */}
+        <Modal show={show} onHide={handleClose} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Add New User</Modal.Title>
+          </Modal.Header>
+          <Form onSubmit={handleSubmit}>
+            <Modal.Body>
+              <Form.Group className="mb-3">
+                <Form.Label>User Name</Form.Label>
+                <Form.Control
                   type="text"
-                  className="form-control"
-                  id="textInput"
-                  placeholder="Type something here..."
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  placeholder="Enter user name"
                   required
                 />
-              </div>
+              </Form.Group>
 
-              {/* Submit button */}
-              <div className="col-md-3 d-grid">
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
-              </div>
-            </form>
+              <Form.Group className="mb-3">
+                <Form.Label>Designation</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="designation"
+                  value={formData.designation}
+                  onChange={handleChange}
+                  placeholder="Enter designation"
+                  required
+                />
+              </Form.Group>
 
-          </div>
-        </div>
+              <Form.Group className="mb-3">
+                <Form.Label>Phone Number</Form.Label>
+                <Form.Control
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="Enter phone number"
+                  required
+                />
+              </Form.Group>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="primary">
+                Save User
+              </Button>
+            </Modal.Footer>
+          </Form>
+        </Modal>
       </div>
     </div>
-        
-
-        {/* Recent Orders */}
-        
-      </div>
-    </div>
-  )
+  );
 }
 
-export default AddDelUsers
+export default AddDelUsers;
