@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import java.util.List;
 
 /** This class represents the REST API controller for employees. */
@@ -30,6 +31,7 @@ public class EmployeeController {
    */
   @Operation(summary = "Get all employees", description = "Retrieve a list of all employees")
   @GetMapping
+  @PreAuthorize("hasRole('HR')")
   public List<Employee> getAllEmployees() {
     return employeeService.getAllEmployees();
   }
@@ -49,6 +51,7 @@ public class EmployeeController {
         @ApiResponse(responseCode = "404", description = "Employee not found")
       })
   @GetMapping("/{id}")
+  @PreAuthorize("hasAnyRole('HR','EMPLOYEE')")
   public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
     Employee employee =
         employeeService
@@ -65,6 +68,7 @@ public class EmployeeController {
    */
   @Operation(summary = "Create a new employee", description = "Create a new employee record")
   @PostMapping
+  @PreAuthorize("hasRole('HR')")
   public Employee createEmployee(@RequestBody Employee employee) {
     return employeeService.saveEmployee(employee);
   }
@@ -85,6 +89,7 @@ public class EmployeeController {
         @ApiResponse(responseCode = "404", description = "Employee not found")
       })
   @PutMapping("/{id}")
+  @PreAuthorize("hasRole('HR')")
   public ResponseEntity<Employee> updateEmployee(
       @PathVariable Long id, @RequestBody Employee employeeDetails) {
     Employee employee =
@@ -115,6 +120,7 @@ public class EmployeeController {
         @ApiResponse(responseCode = "404", description = "Employee not found")
       })
   @DeleteMapping("/{id}")
+  @PreAuthorize("hasRole('HR')")
   public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
     Employee employee =
         employeeService

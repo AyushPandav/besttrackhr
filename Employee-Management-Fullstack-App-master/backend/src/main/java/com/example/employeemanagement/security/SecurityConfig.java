@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /** This class represents the security configuration. */
 @EnableWebSecurity
@@ -17,6 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   /** The user details service. */
   @Autowired private UserDetailsService userDetailsService;
+
+  @Autowired private JwtRequestFilter jwtRequestFilter;
 
   /**
    * Configure authentication.
@@ -59,11 +63,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    */
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    // Disable authentication for all routes
-    http.csrf()
-        .disable()
+    http.csrf().disable()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
         .authorizeRequests()
-        .anyRequest()
-        .permitAll(); // Allow access to all routes without authentication (for now)
+        .antMatchers("/authenticate", "/register", "/verify-username/**", "/reset-password", "/oauth/google", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+        .antMatchers("/api/hr/**").hasRole("HR")
+        .antMatchers("/api/employees/**").hasAnyRole("HR", "EMPLOYEE")
+        .antMatchers("/api/calendar/hr/**").hasRole("HR")
+        .antMatchers("/api/calendar/**").hasAnyRole("HR", "EMPLOYEE")
+        .anyRequest().authenticated();
+
+    http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
   }
 }

@@ -1,6 +1,7 @@
 package com.example.employeemanagement.controller;
 
 import com.example.employeemanagement.model.User;
+import com.example.employeemanagement.model.Role;
 import com.example.employeemanagement.repository.UserRepository;
 import com.example.employeemanagement.security.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -98,7 +104,9 @@ public class AuthController {
       );
 
       final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
-      final String jwt = jwtTokenUtil.generateToken(userDetails.getUsername());
+      // Load role for embedding into JWT
+      Role role = userRepository.findByUsername(user.getUsername()).map(User::getRole).orElse(Role.EMPLOYEE);
+      final String jwt = jwtTokenUtil.generateToken(userDetails.getUsername(), role.name());
 
       Map<String, String> response = new HashMap<>();
       response.put("token", jwt);
@@ -108,6 +116,59 @@ public class AuthController {
       return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error: Invalid username or password");
     } catch (Exception e) {
       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error: Unable to authenticate");
+    }
+  }
+
+  /**
+   * Google Sign-In: accepts an ID token, verifies it, upserts the user, issues our JWT.
+   */
+  @Operation(summary = "Google Sign-In", description = "Authenticate via Google ID token and receive JWT")
+  @ApiResponses(value = {
+      @ApiResponse(responseCode = "200", description = "Authenticated via Google"),
+      @ApiResponse(responseCode = "401", description = "Invalid Google token")
+  })
+  @PostMapping("/oauth/google")
+  public ResponseEntity<?> googleSignIn(@RequestBody Map<String, String> body) {
+    String idTokenString = body.get("idToken");
+    String defaultRole = body.getOrDefault("role", "EMPLOYEE"); // frontend supplies intended role if needed
+    try {
+      GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(
+          GoogleNetHttpTransport.newTrustedTransport(), JacksonFactory.getDefaultInstance())
+          .build();
+
+      GoogleIdToken idToken = verifier.verify(idTokenString);
+      if (idToken == null) {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Google ID token");
+      }
+      Payload payload = idToken.getPayload();
+      String email = payload.getEmail();
+      String name = (String) payload.get("name");
+
+      // Use email as username for our system
+      Optional<User> existing = userRepository.findByUsername(email);
+      User appUser = existing.orElseGet(User::new);
+      appUser.setUsername(email);
+      appUser.setEmail(email);
+      appUser.setName(name);
+      appUser.setAuthProvider("GOOGLE");
+      if (appUser.getRole() == null) {
+        appUser.setRole(Role.valueOf(defaultRole));
+      }
+      // Set a dummy password if new (not used for Google accounts)
+      if (existing.isEmpty()) {
+        appUser.setPassword(passwordEncoder.encode("oauth-google"));
+      }
+      userRepository.save(appUser);
+
+      final String jwt = jwtTokenUtil.generateToken(appUser.getUsername(), appUser.getRole().name());
+      Map<String, Object> response = new HashMap<>();
+      response.put("token", jwt);
+      response.put("role", appUser.getRole().name());
+      response.put("email", appUser.getEmail());
+      response.put("name", appUser.getName());
+      return ResponseEntity.ok(response);
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Google authentication failed");
     }
   }
 

@@ -3,6 +3,8 @@ package com.example.employeemanagement.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -74,11 +76,14 @@ public class JwtTokenUtil {
    * @param username The username
    * @return The JWT token
    */
-  public String generateToken(String username) {
+  public String generateToken(String username, String role) {
+    Map<String, Object> claims = new HashMap<>();
+    claims.put("role", role);
     return Jwts.builder()
+        .setClaims(claims)
         .setSubject(username)
         .setIssuedAt(new Date())
-        .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 7)) // 1 week validity
+        .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 7))
         .signWith(SignatureAlgorithm.HS256, secret)
         .compact();
   }
@@ -93,5 +98,12 @@ public class JwtTokenUtil {
   public Boolean validateToken(String token, String username) {
     final String extractedUsername = extractUsername(token);
     return (extractedUsername.equals(username) && !isTokenExpired(token));
+  }
+
+  /** Extract role claim from token. */
+  public String extractRole(String token) {
+    final Claims claims = extractAllClaims(token);
+    Object role = claims.get("role");
+    return role == null ? null : role.toString();
   }
 }
