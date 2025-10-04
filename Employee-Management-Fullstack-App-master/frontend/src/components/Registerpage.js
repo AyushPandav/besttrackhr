@@ -82,8 +82,7 @@ const RegisterPage = () => {
 
     try {
       const result = await authService.register({
-        username: formData.username,
-        email: formData.email,
+        email: formData.email, // Use email as the primary identifier
         password: formData.password,
         role: formData.role,
         name: formData.name,

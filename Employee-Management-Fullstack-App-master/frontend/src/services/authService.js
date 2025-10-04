@@ -88,7 +88,7 @@ class AuthService {
     try {
       console.log('Attempting login with:', credentials);
       const response = await axios.post(`${API_BASE_URL}/authenticate`, {
-        username: credentials.username,
+        username: credentials.username, // This should be the email
         password: credentials.password
       });
       
@@ -154,7 +154,6 @@ class AuthService {
       // For now, we'll simulate Google login by creating a fake user
       // In production, you would verify the Google ID token
       const mockUser = {
-        username: `google_${Date.now()}@example.com`,
         email: `google_${Date.now()}@example.com`,
         name: 'Google User',
         role: role || 'EMPLOYEE'
@@ -168,7 +167,7 @@ class AuthService {
       
       // Then login
       const loginResponse = await this.login({
-        username: mockUser.username,
+        username: mockUser.email,
         password: 'google_oauth_password'
       });
       
@@ -218,8 +217,9 @@ class AuthService {
       console.log('Attempting registration with:', userData);
       
       // Ensure we have all required fields
+      // Use email as username for consistency
       const registrationData = {
-        username: userData.username || userData.email,
+        username: userData.email, // Always use email as username
         email: userData.email,
         name: userData.name,
         password: userData.password || 'default_password',

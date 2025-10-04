@@ -17,7 +17,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch('https://employee-management-app-gdm5.onrender.com/authenticate', {
+      const response = await fetch('http://localhost:8080/authenticate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -32,7 +32,7 @@ const Login = () => {
         alert('Login successful. Welcome!');
         navigate('/dashboard'); // Correct navigation after login success
       } else {
-        setError('Invalid credentials. Please try again.');
+        setError(data.message || 'Invalid credentials. Please try again.');
       }
     } catch (err) {
       setLoading(false);
@@ -54,7 +54,7 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
-              label="Username"
+              label="Email Address"
               value={username}
               onChange={e => setUsername(e.target.value)}
               sx={{ marginBottom: '1rem' }}

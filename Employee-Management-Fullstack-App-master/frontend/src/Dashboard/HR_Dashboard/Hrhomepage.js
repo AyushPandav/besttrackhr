@@ -13,39 +13,43 @@ function Hrhomepage() {
         <div className="nav-menu">
           <div className="menu-heading">Main</div>
           <div className="nav-item active">
-            <Link to="/hradminpage">
+            <Link to="/hradmin/hradminpage">
                       <i className="fas fa-chart-pie"></i>
                       <span>Dashboard</span>
                     </Link>
           </div>
           <div className="nav-item">
-            <Link to="/addusers" >
+            <Link to="/hradmin/addusers" >
                       <i className="fas fa-users"></i>
                       <span>Add / Del Users</span>
                     </Link>
           </div>
           <div className="nav-item">
-            <Link to="#" >
+            <Link to="/hradmin/arrangecalender" >
                       <i className="fas fa-boxes"></i>
                       <span>Arrange Calender</span>
                     </Link>
           </div>
           <div className="nav-item">
-            <Link to="#" >
+            <Link to="/hradmin/groupchat" >
                       <i className="fas fa-boxes"></i>
                       <span>Group Chat</span>
                     </Link>
           </div>
 
           <div className="menu-heading">Reports</div>
-          <div className="nav-item">
-            <i className="fas fa-chart-line"></i>
-            <span>Daily Attendance</span>
-          </div>
-          <div className="nav-item">
-            <i className="fas fa-coins"></i>
-            <span>Daily Reports</span>
-          </div>
+          <div className="nav-item active">
+                      <Link to="/hradmin/dailyattendance">
+                        <i className="fas fa-boxes"></i>
+                        <span>Daily Attendance</span>
+                      </Link>
+                    </div>
+                    <div className="nav-item">
+                      <Link to="/hradmin/dailyreport">
+                        <i className="fas fa-boxes"></i>
+                        <span>Daily Reports</span>
+                      </Link>
+                    </div>
 
           <div className="menu-heading">Admin</div>
           <div className="nav-item">

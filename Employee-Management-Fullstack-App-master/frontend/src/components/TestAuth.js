@@ -15,7 +15,6 @@ const TestAuth = () => {
     
     try {
       const testUser = {
-        username: `test_${Date.now()}@example.com`,
         email: `test_${Date.now()}@example.com`,
         name: 'Test User',
         password: 'test123',
@@ -32,8 +31,11 @@ const TestAuth = () => {
           addResult(`⚠️ User already exists: ${result.error}`, 'warning');
           addResult(`💡 This is expected if you've run the test before. Trying login instead...`, 'info');
           // Try to login with the existing user
-          const loginResult = await testLogin(testUser);
-          return loginResult ? testUser : null;
+      const loginResult = await testLogin({
+        username: testUser.email,
+        password: testUser.password
+      });
+      return loginResult ? testUser : null;
         } else {
           addResult(`❌ Registration failed: ${result.error}`, 'error');
           return null;
