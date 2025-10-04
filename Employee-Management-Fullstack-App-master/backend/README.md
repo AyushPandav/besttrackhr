@@ -2,20 +2,19 @@
 
 ## Overview
 
-The backend of the Employee Management System is built using Spring Boot, a powerful Java framework designed to simplify the development of production-ready applications. This backend provides a RESTful API for managing employee and department data, connecting to both MySQL and MongoDB databases.
+The backend of the Employee Management System is built using Spring Boot, a powerful Java framework designed to simplify the development of production-ready applications. This backend provides a RESTful API for managing employee and department data, connecting to MySQL database.
 
 ## Features
 
 - **RESTful API**: Provides endpoints for CRUD operations on employees and departments.
 - **Data Initialization**: Includes sample data for departments and employees.
-- **Integration**: Connects to both MySQL and MongoDB databases.
+- **Integration**: Connects to MySQL database.
 - **Exception Handling**: Custom error handling for not found resources.
 
 ## Technologies
 
 - **Spring Boot**: Framework for building production-ready applications with Java.
 - **MySQL**: Relational database for structured data storage.
-- **MongoDB**: NoSQL database for non-relational data storage.
 
 ## File Structure
 
@@ -94,12 +93,9 @@ spring.datasource.url=jdbc:mysql://localhost:3306/employee_management
 spring.datasource.username=root
 spring.datasource.password=password
 spring.jpa.hibernate.ddl-auto=update
-
-# MongoDB Configuration
-spring.data.mongodb.uri=mongodb://localhost:27017/employee_management
 ```
 
-Ensure the databases are set up as expected and the URLs, usernames, and passwords match your local or remote database setup.
+Ensure the database is set up as expected and the URL, username, and password match your local or remote database setup.
 
 ### 4. Start the Backend Server
 

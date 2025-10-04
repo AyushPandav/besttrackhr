@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: employee-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: employee_management
+      MYSQL_USER: employee_user
+      MYSQL_PASSWORD: employee_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+
+  backend:
+    build: ./backend
+    container_name: employee-backend
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB: employee_management
+      MYSQL_USER: employee_user
+      MYSQL_PASSWORD: employee_password
+      MYSQL_SSL_MODE: DISABLED
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:

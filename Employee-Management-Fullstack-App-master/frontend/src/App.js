@@ -19,6 +19,7 @@ import Loginpage from './components/Loginpage';
 import RegisterPage from './components/Registerpage';
 import Hrhomepage from './Dashboard/HR_Dashboard/Hrhomepage';
 import AddDelUsers from './Dashboard/HR_Dashboard/AddDelUsers';
+import TestAuth from './components/TestAuth';
 
 const AppContent = () => {
   const location = useLocation();
@@ -48,6 +49,7 @@ const AppContent = () => {
           <Route path="/registerpage" element={<RegisterPage/>} />
           <Route path="/hradminpage" element={<Hrhomepage/>} />
           <Route path='/addusers' element={<AddDelUsers/>}  />
+          <Route path="/test-auth" element={<TestAuth />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Container>
