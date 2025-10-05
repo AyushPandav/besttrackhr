@@ -1,0 +1,67 @@
+.calendar-container {
+  background-color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.calendar-title {
+  font-size: 28px;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 25px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.calendar-box {
+  width: 90%;
+  max-width: 1000px;
+  height: 600px;
+  background: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Loading & Error Styles */
+.calendar-loading,
+.calendar-error {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  margin-top: 200px;
+}
+
+/* Enhance react-big-calendar default styles */
+.rbc-calendar {
+  background: white;
+  border-radius: 10px;
+}
+
+.rbc-header {
+  background-color: #007acc;
+  color: white;
+  padding: 10px;
+  font-weight: 600;
+  border: none;
+}
+
+.rbc-event {
+  background-color: #28a745;
+  border-radius: 6px;
+  color: white;
+  padding: 2px 5px;
+  font-size: 14px;
+}
+
+.rbc-today {
+  background-color: rgba(0, 122, 204, 0.1);
+}
+
+.rbc-off-range-bg {
+  background: #f2f2f2;
+}
