@@ -1,0 +1,143 @@
+.register-page {
+    display: flex
+;
+}
+        .hero-background {
+            width: 50%;
+            height: 100vh;
+            background: url("../img/sign-in-page.jpg");
+            background-blend-mode: screen, overlay, overlay, overlay, screen;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+
+        .auth-form {
+            width: 50%;
+            height: 100vh;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+        .form-title {
+            color: #87aee3;
+            font-size: 2.5em;
+            /* font-weight: bold; */
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .form-field {
+            margin-bottom: 20px;
+            width: 300px;
+        }
+
+        .form-field input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #898989;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+
+        .primary-button {
+            background-color: #87aee3;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            width: 300px;
+            transition: background-color 0.3s;
+        }
+
+        .primary-button:hover {
+            background-color: #80bfff;
+        }
+
+        .divider-line {
+            display: flex;
+            align-items: center;
+            width: 300px;
+            margin-bottom: 20px;
+        }
+
+        .divider-line::before,
+        .divider-line::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: #dee2e6;
+        }
+
+        .divider-text {
+            padding: 0 20px;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .social-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            width: 300px;
+        }
+
+        .social-button {
+            flex: 1;
+            background-color: white;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .social-button:hover {
+            border-color: #007bff;
+            color: white;
+        }
+
+        .login-link {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+
+        .login-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Radio button container */
+.form-field label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1c1c1c;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Space between radio button and text */
+.form-field input[type="radio"] {
+  margin-right: 0.5rem;
+  accent-color: #3e75ff; /* Matches your theme color */
+}
+
+/* Optional: space between the two radio options */
+.form-field label + label {
+  margin-left: 1.5rem;
+}
