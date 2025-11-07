@@ -28,10 +28,7 @@ function AddDelUsers() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-<<<<<<< HEAD
-=======
   // Form state
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
   const [formData, setFormData] = useState({
     username: "",
     designation: "",
