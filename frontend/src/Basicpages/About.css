@@ -1,0 +1,383 @@
+header.gradient-bg.hero {
+    margin-top: 80px;
+}
+
+.gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .nav-container {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+        .nav-logo i {
+            width: 2rem;
+            height: 2rem;
+            color: #4f46e5;
+            margin-right: 0.5rem;
+        }
+        .nav-logo span {
+            font-weight: 600;
+            color: #6b7280;
+            font-size: 1.125rem;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .nav-links a {
+            padding: 1rem 0.5rem;
+            color: #6b7280;
+            text-decoration: none;
+        }
+        .nav-links a:hover {
+            color: #4f46e5;
+        }
+        .nav-links .active {
+            color: #4f46e5;
+            border-bottom: 4px solid #4f46e5;
+        }
+        .nav-links .login-btn {
+            background-color: #4f46e5;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+        .nav-links .login-btn:hover {
+            background-color: #4338ca;
+            color: #ffffff;
+        }
+        .mobile-menu-button {
+            display: none;
+        }
+        .mobile-menu {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu-button {
+                display: flex;
+                align-items: center;
+            }
+            .mobile-menu-button i {
+                width: 1.5rem;
+                height: 1.5rem;
+                color: #6b7280;
+            }
+            .mobile-menu {
+                display: none;
+                flex-direction: column;
+                padding: 1rem;
+                background-color: #ffffff;
+            }
+            .mobile-menu.active {
+                display: flex;
+            }
+        }
+        .hero {
+            padding: 5rem 0;
+            color: #ffffff;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero a {
+            background-color: #ffffff;
+            color: #4f46e5;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+        }
+        .hero a:hover {
+            background-color: #f3f4f6;
+        }
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3.75rem;
+            }
+            .hero p {
+                font-size: 1.5rem;
+            }
+        }
+        .about-content {
+            padding: 4rem 0;
+            background-color: #f9fafb;
+        }
+        .about-flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .about-text {
+            margin-top: 2.5rem;
+        }
+        .about-text h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .about-text p {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            line-height: 1.625;
+        }
+        .about-stats {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .stat-item {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .stat-item i {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: #4f46e5;
+            background-color: #e0e7ff;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            margin-right: 1rem;
+        }
+        .stat-item span {
+            font-weight: 600;
+        }
+        @media (min-width: 768px) {
+            .about-flex {
+                flex-direction: row;
+            }
+            .about-image {
+                width: 50%;
+            }
+            .about-text {
+                width: 50%;
+                padding-left: 3rem;
+                margin-top: 0;
+            }
+            .stat-item {
+                width: 50%;
+            }
+        }
+        .team-section {
+            padding: 4rem 0;
+            background-color: #ffffff;
+        }
+        .team-section h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 -1rem;
+        }
+        .team-member {
+            width: 100%;
+            padding: 0 1rem;
+            margin-bottom: 2rem;
+        }
+        .team-card {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .team-card img {
+            width: 100%;
+            height: 16rem;
+            object-fit: cover;
+        }
+        .team-card-content {
+            padding: 1.5rem;
+        }
+        .team-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+        .team-card p.position {
+            color: #4f46e5;
+            margin-bottom: 0.5rem;
+        }
+        .team-card p.description {
+            color: #4b5563;
+            font-size: 0.875rem;
+        }
+        .team-card .social-links {
+            display: flex;
+            margin-top: 1rem;
+        }
+        .team-card .social-links a {
+            color: #6b7280;
+            margin-right: 1rem;
+        }
+        .team-card .social-links a:hover {
+            color: #4f46e5;
+        }
+        @media (min-width: 768px) {
+            .team-member {
+                width: 33.333%;
+            }
+        }
+        @media (min-width: 1024px) {
+            .team-member {
+                width: 25%;
+            }
+        }
+        .values-section {
+            padding: 4rem 0;
+            background-color: #f9fafb;
+        }
+        .values-section h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .values-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -1rem;
+        }
+        .value-item {
+            width: 100%;
+            padding: 0 1rem;
+            margin-bottom: 2rem;
+        }
+        .value-card {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            height: 100%;
+        }
+        .value-card i {
+            width: 2rem;
+            height: 2rem;
+            color: #4f46e5;
+            background-color: #e0e7ff;
+            padding: 1rem;
+            border-radius: 9999px;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        .value-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .value-card p {
+            color: #4b5563;
+        }
+        @media (min-width: 768px) {
+            .value-item {
+                width: 33.333%;
+            }
+        }
+        .cta-section {
+            padding: 4rem 0;
+            color: #ffffff;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            max-width: 32rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .cta-buttons a {
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+        }
+        .cta-buttons .primary-btn {
+            background-color: #ffffff;
+            color: #4f46e5;
+        }
+        .cta-buttons .primary-btn:hover {
+            background-color: #f3f4f6;
+        }
+        .cta-buttons .secondary-btn {
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
+        .cta-buttons .secondary-btn:hover {
+            background-color: #ffffff;
+            color: #4f46e5;
+        }
+        @media (min-width: 640px) {
+            .cta-buttons {
+                flex-direction: row;
+            }
+            .cta-section h2 {
+                font-size: 2.25rem;
+            }
+        }

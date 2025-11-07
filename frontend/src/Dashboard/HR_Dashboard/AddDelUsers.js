@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -14,16 +15,30 @@ function AddDelUsers() {
 
   const SPRINGBOOT_URL = "https://6908882f2d902d0651b0b8b2.mockapi.io/mysql-server-localhost/users";
   const SPRING_BOOT_URL = "http://localhost:8080"; // Replace with your ping endpoint
+=======
+import React, { useState } from "react";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+
+function AddDelUsers() {
+  const [show, setShow] = useState(false);
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+<<<<<<< HEAD
+=======
+  // Form state
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
   const [formData, setFormData] = useState({
     username: "",
     designation: "",
     phone: ""
   });
 
+<<<<<<< HEAD
   // 🧪 Check if Spring Boot server is running
   const checkBackend = async () => {
     try {
@@ -56,6 +71,8 @@ function AddDelUsers() {
   }, [backendUp]);
 
   // 🖊️ Handle input change
+=======
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -63,6 +80,7 @@ function AddDelUsers() {
     });
   };
 
+<<<<<<< HEAD
   // ➕ Add user (POST request)
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -98,6 +116,13 @@ function AddDelUsers() {
       console.error(err);
       setError("Failed to delete user from MockAPI.");
     }
+=======
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("User Data:", formData);
+    // 👉 Here you can call API or update state with new user
+    setShow(false);
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
   };
 
   return (
@@ -109,19 +134,29 @@ function AddDelUsers() {
         </div>
         <div className="nav-menu">
           <div className="menu-heading">Main</div>
+<<<<<<< HEAD
           <div className="nav-item">
+=======
+          <div className="nav-item active">
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
             <Link to="/hradmin/hradminpage">
               <i className="fas fa-chart-pie"></i>
               <span>Dashboard</span>
             </Link>
           </div>
+<<<<<<< HEAD
           <div className="nav-item active">
             <Link to="/hradmin/addusers">
+=======
+          <div className="nav-item">
+            <Link to="/hradmin/addusers" >
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
               <i className="fas fa-users"></i>
               <span>Add / Del Users</span>
             </Link>
           </div>
           <div className="nav-item">
+<<<<<<< HEAD
             <Link to="/hradmin/arrangecalender">
               <i className="fas fa-calendar-alt"></i>
               <span>Arrange Calendar</span>
@@ -139,6 +174,46 @@ function AddDelUsers() {
               <i className="fas fa-boxes"></i>
               <span>Daily Reports</span>
             </Link>
+=======
+            <Link to="/hradmin/arrangecalender" >
+              <i className="fas fa-boxes"></i>
+              <span>Arrange Calender</span>
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link to="/hradmin/groupchat" >
+              <i className="fas fa-boxes"></i>
+              <span>Group Chat</span>
+            </Link>
+          </div>
+
+          <div className="menu-heading">Reports</div>
+          <div className="nav-item active">
+                      <Link to="/hradmin/dailyattendance">
+                        <i className="fas fa-boxes"></i>
+                        <span>Daily Attendance</span>
+                      </Link>
+                    </div>
+                    <div className="nav-item">
+                      <Link to="/hradmin/dailyreport">
+                        <i className="fas fa-boxes"></i>
+                        <span>Daily Reports</span>
+                      </Link>
+                    </div>
+
+          <div className="menu-heading">Admin</div>
+          <div className="nav-item">
+            <i className="fas fa-cog"></i>
+            <span>Settings</span>
+          </div>
+          <div className="nav-item">
+            <i className="fas fa-bell"></i>
+            <span>Notifications</span>
+          </div>
+          <div className="nav-item">
+            <i className="fas fa-shield-alt"></i>
+            <span>Security</span>
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
           </div>
         </div>
       </div>
@@ -176,12 +251,17 @@ function AddDelUsers() {
             <button className="btn btn-outline">
               <i className="fas fa-download"></i> Users
             </button>
+<<<<<<< HEAD
             <button className="btn btn-primary" onClick={handleShow} disabled={!backendUp}>
+=======
+            <button className="btn btn-primary" onClick={handleShow}>
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
               <i className="fas fa-plus"></i> Add New
             </button>
           </div>
         </div>
 
+<<<<<<< HEAD
         {/* Error Message */}
         {error && (
           <div className="alert alert-danger" role="alert">
@@ -223,6 +303,8 @@ function AddDelUsers() {
           </tbody>
         </Table>
 
+=======
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
         {/* Modal with Form */}
         <Modal show={show} onHide={handleClose} centered>
           <Modal.Header closeButton>
@@ -239,7 +321,10 @@ function AddDelUsers() {
                   onChange={handleChange}
                   placeholder="Enter user name"
                   required
+<<<<<<< HEAD
                   disabled={!backendUp}
+=======
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
                 />
               </Form.Group>
 
@@ -252,7 +337,10 @@ function AddDelUsers() {
                   onChange={handleChange}
                   placeholder="Enter designation"
                   required
+<<<<<<< HEAD
                   disabled={!backendUp}
+=======
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
                 />
               </Form.Group>
 
@@ -265,15 +353,25 @@ function AddDelUsers() {
                   onChange={handleChange}
                   placeholder="Enter phone number"
                   required
+<<<<<<< HEAD
                   disabled={!backendUp}
+=======
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
                 />
               </Form.Group>
             </Modal.Body>
             <Modal.Footer>
+<<<<<<< HEAD
               <Button variant="secondary" onClick={handleClose} disabled={!backendUp}>
                 Cancel
               </Button>
               <Button type="submit" variant="primary" disabled={!backendUp}>
+=======
+              <Button variant="secondary" onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button type="submit" variant="primary">
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
                 Save User
               </Button>
             </Modal.Footer>

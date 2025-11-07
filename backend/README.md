@@ -2,19 +2,31 @@
 
 ## Overview
 
+<<<<<<< HEAD
 The backend of the Employee Management System is built using Spring Boot, a powerful Java framework designed to simplify the development of production-ready applications. This backend provides a RESTful API for managing employee and department data, connecting to MySQL database.
+=======
+The backend of the Employee Management System is built using Spring Boot, a powerful Java framework designed to simplify the development of production-ready applications. This backend provides a RESTful API for managing employee and department data, connecting to both MySQL and MongoDB databases.
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 
 ## Features
 
 - **RESTful API**: Provides endpoints for CRUD operations on employees and departments.
 - **Data Initialization**: Includes sample data for departments and employees.
+<<<<<<< HEAD
 - **Integration**: Connects to MySQL database.
+=======
+- **Integration**: Connects to both MySQL and MongoDB databases.
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 - **Exception Handling**: Custom error handling for not found resources.
 
 ## Technologies
 
 - **Spring Boot**: Framework for building production-ready applications with Java.
 - **MySQL**: Relational database for structured data storage.
+<<<<<<< HEAD
+=======
+- **MongoDB**: NoSQL database for non-relational data storage.
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 
 ## File Structure
 
@@ -93,9 +105,18 @@ spring.datasource.url=jdbc:mysql://localhost:3306/employee_management
 spring.datasource.username=root
 spring.datasource.password=password
 spring.jpa.hibernate.ddl-auto=update
+<<<<<<< HEAD
 ```
 
 Ensure the database is set up as expected and the URL, username, and password match your local or remote database setup.
+=======
+
+# MongoDB Configuration
+spring.data.mongodb.uri=mongodb://localhost:27017/employee_management
+```
+
+Ensure the databases are set up as expected and the URLs, usernames, and passwords match your local or remote database setup.
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 
 ### 4. Start the Backend Server
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { Link, useNavigate } from 'react-router-dom';
 import './Loginpage.css';
 import authService from '../services/authService';
@@ -165,6 +166,27 @@ const Loginpage = () => {
               </Link>
             </p>
           </div>
+=======
+import './Loginpage.css';
+
+
+const Loginpage = () => {
+  return (
+   <div className="login-container">
+      <div className="left-panel"></div>
+      <div className="right-panel">
+        <h1 className="sign-in-title">Sign in as</h1>
+        <p className="description">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc justo.
+        </p>
+        <button className="employee-btn">EMPLOYEE</button>
+        <button className="hr-btn">HR</button>
+        <div className="dots">
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+          <div className="dot"></div>
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
         </div>
       </div>
     </div>

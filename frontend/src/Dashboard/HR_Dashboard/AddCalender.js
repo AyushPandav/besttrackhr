@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -90,6 +91,21 @@ function AddCalender() {
     setError("Failed to delete event from Spring boot.");
       }
     }
+=======
+
+import { Link } from "react-router-dom";
+import React, { useState } from "react";
+
+function AddCalenders() {
+const [date, setDate] = useState("");
+  const [text, setText] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Selected Date:", date);
+    console.log("Entered Text:", text);
+    alert(`Date: ${date} | Text: ${text}`);
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
   };
 
   return (
@@ -101,6 +117,7 @@ function AddCalender() {
         </div>
         <div className="nav-menu">
           <div className="menu-heading">Main</div>
+<<<<<<< HEAD
           <div className="nav-item">
             <Link to="/hradmin/hradminpage">
               <i className="fas fa-chart-pie"></i>
@@ -131,6 +148,59 @@ function AddCalender() {
               <i className="fas fa-boxes"></i>
               <span>Daily Reports</span>
             </Link>
+=======
+          <div className="nav-item active">
+                      <Link to="/hradmin/hradminpage">
+                                <i className="fas fa-chart-pie"></i>
+                                <span>Dashboard</span>
+                              </Link>
+                    </div>
+                    <div className="nav-item">
+                      <Link to="/hradmin/addusers" >
+                                <i className="fas fa-users"></i>
+                                <span>Add / Del Users</span>
+                              </Link>
+                    </div>
+                    <div className="nav-item">
+                      <Link to="/hradmin/arrangecalender" >
+                                <i className="fas fa-boxes"></i>
+                                <span>Arrange Calender</span>
+                              </Link>
+                    </div>
+                    <div className="nav-item">
+                      <Link to="/hradmin/groupchat" >
+                                <i className="fas fa-boxes"></i>
+                                <span>Group Chat</span>
+                              </Link>
+                    </div>
+
+          <div className="menu-heading">Reports</div>
+          <div className="nav-item active">
+                      <Link to="/hradmin/dailyattendance">
+                        <i className="fas fa-boxes"></i>
+                        <span>Daily Attendance</span>
+                      </Link>
+                    </div>
+                    <div className="nav-item">
+                      <Link to="/hradmin/dailyreport">
+                        <i className="fas fa-boxes"></i>
+                        <span>Daily Reports</span>
+                      </Link>
+                    </div>
+
+          <div className="menu-heading">Admin</div>
+          <div className="nav-item">
+            <i className="fas fa-cog"></i>
+            <span>Settings</span>
+          </div>
+          <div className="nav-item">
+            <i className="fas fa-bell"></i>
+            <span>Notifications</span>
+          </div>
+          <div className="nav-item">
+            <i className="fas fa-shield-alt"></i>
+            <span>Security</span>
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
           </div>
         </div>
       </div>
@@ -163,6 +233,7 @@ function AddCalender() {
       {/* Main Content */}
       <div className="main-content">
         <div className="page-title">
+<<<<<<< HEAD
           <div className="title">Arrange Calendar</div>
         </div>
 
@@ -246,11 +317,80 @@ function AddCalender() {
                 )}
               </div>
             </div>
+=======
+          <div className="title">Users Table</div>
+          <div className="action-buttons">
+            <button className="btn btn-outline">
+              <i className="fas fa-download"></i> Users
+            </button>
+            <button className="btn btn-primary">
+              <i className="fas fa-plus"></i> Add New
+            </button>
+          </div>
+        </div>
+
+        {/* Stats Cards */}
+
+        <div className="row justify-content-center">
+      <div className="col-md-10">
+        <div className="card shadow-sm">
+          <div className="card-body p-4">
+            <h2 className="card-title text-center mb-4">Add a Calender</h2>
+
+            {/* Bootstrap inline form */}
+            <form className="row g-2 align-items-center" onSubmit={handleSubmit}>
+              {/* Date input */}
+              <div className="col-md-4">
+                <input
+                  type="date"
+                  className="form-control"
+                  id="dateInput"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* Text input */}
+              <div className="col-md-5">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="textInput"
+                  placeholder="Type something here..."
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* Submit button */}
+              <div className="col-md-3 d-grid">
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
+              </div>
+            </form>
+
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
           </div>
         </div>
       </div>
     </div>
+<<<<<<< HEAD
   );
 }
 
 export default AddCalender;
+=======
+        
+
+        {/* Recent Orders */}
+        
+      </div>
+    </div>
+  )
+}
+
+export default AddCalenders
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d

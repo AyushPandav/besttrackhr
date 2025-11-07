@@ -35,19 +35,33 @@ const Footer = () => {
               <Link href="/" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
                 Home
               </Link>
+<<<<<<< HEAD
               <Link href="/employee/emppage" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
+=======
+              <Link href="/dashboard" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
                 Dashboard
               </Link>
               <Link href="/employees" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
                 Employees
               </Link>
+<<<<<<< HEAD
+=======
+              <Link href="/departments" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
+                Departments
+              </Link>
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
               <Link href="/profile" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
                 Profile
               </Link>
               <Link href="/login" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
                 Login
               </Link>
+<<<<<<< HEAD
               <Link href="/registerpage" color="inherit" underline="none" sx={{ display: 'block', '&:hover': { color: '#f57c00' } }}>
+=======
+              <Link href="/register" color="inherit" underline="none" sx={{ display: 'block', '&:hover': { color: '#f57c00' } }}>
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
                 Register
               </Link>
             </Box>
@@ -60,12 +74,18 @@ const Footer = () => {
             </Typography>
             <Typography variant="body2">
               Project Maintainer:{' '}
+<<<<<<< HEAD
               <Link href="https://github.com/AyushPandav/besttrackhr" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
                 Tanish Jaiswal, Ayush Pandav, Maaz Mukadam, Piyush Patil
+=======
+              <Link href="https://github.com/hoangsonww" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
+                Son Nguyen
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
               </Link>
             </Typography>
             <Typography variant="body2">
               Email:{' '}
+<<<<<<< HEAD
               <Link href="mailto:fs22if021@gmail.com" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
                 fs22if021@gmail.com
               </Link>
@@ -73,6 +93,15 @@ const Footer = () => {
             <Typography variant="body2">Phone: +91 828295821</Typography>
             <Typography variant="body2" sx={{ marginTop: '0.5rem' }}>
               Kolset Thane, 400607, Amara, 
+=======
+              <Link href="mailto:hoangson091104@gmail.com" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
+                hoangson091104@gmail.com
+              </Link>
+            </Typography>
+            <Typography variant="body2">Phone: +1 (123) 456-7890</Typography>
+            <Typography variant="body2" sx={{ marginTop: '0.5rem' }}>
+              Address: 123 Employee St, Suite 100, New York, NY 10001
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
             </Typography>
           </Grid>
         </Grid>

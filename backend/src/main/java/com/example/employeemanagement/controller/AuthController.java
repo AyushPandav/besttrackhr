@@ -223,4 +223,8 @@ public class AuthController {
       return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Username not found");
     }
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d

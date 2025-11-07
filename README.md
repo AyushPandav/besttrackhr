@@ -1,5 +1,6 @@
 # Employee Management Full-Stack Application
 
+<<<<<<< HEAD
 The **Employee Management Full-Stack Application** is a modern, feature-rich system for managing employee and department data, built to demonstrate the power of combining traditional enterprise technologies with modern web frameworks. It leverages a responsive React frontend alongside a robust Spring Boot backend, delivering a seamless user experience with features such as CRUD operations, data visualization, authentication, and secure REST APIs. Designed with scalability and maintainability in mind, this application is also fully containerized with Docker, orchestrated with Kubernetes, and supports CI/CD pipelines through Jenkins, making it an ideal blueprint for real-world enterprise applications.
 
 <p align="center">
@@ -7,6 +8,12 @@ The **Employee Management Full-Stack Application** is a modern, feature-rich sys
     <img src="img/logo.png" alt="Employee Management Full-Stack Application Logo" style="border-radius: 10px" width="35%"/>
   </a>
 </p>
+=======
+The **Employee Management Full-Stack Application** is a robust, enterprise-grade system designed to manage employee and department data efficiently. It combines the power of a Spring Boot backend with a React frontend to deliver a seamless and interactive experience.
+
+Built with a focus on scalability, maintainability, and modern development practices, the application provides features like CRUD operations, data visualization, authentication, and secure REST APIs. The entire solution is containerized with Docker, orchestrated using Kubernetes, and integrated with Jenkins for automated CI/CD pipelines — making it a complete blueprint for real-world enterprise software development.
+
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 
 ## Table of Contents
 
@@ -49,7 +56,11 @@ The **Employee Management Full-Stack Application** is a modern, feature-rich sys
 
 ## Overview
 
+<<<<<<< HEAD
 The Employee Management System is a dynamic full-stack application that seamlessly combines cutting-edge and traditional technologies. By integrating a modern **React** frontend with a classic **Spring Boot** backend, this project demonstrates how new and established technologies can harmoniously work together to create a robust and efficient application for managing employee and department data!
+=======
+The Employee Management System demonstrates how modern and traditional technologies can be combined to build high-performance business applications. With a React-based frontend for interactivity and a Spring Boot-powered backend for reliability and scalability, this project showcases best practices in full-stack development and enterprise architecture.
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 
 ![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=openjdk&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
@@ -85,11 +96,14 @@ The Employee Management System is a dynamic full-stack application that seamless
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
+<<<<<<< HEAD
 ## Live Deployment
 
 The Employee Management System full-stack app is deployed with Vercel and is live at [https://employee-manage-app.vercel.app](https://employee-manage-app.vercel.app) for you to explore and interact with the application.
 
 The backend is also deployed with Render and is available at [https://employee-management-app.onrender.com](https://employee-management-app-gdm5.onrender.com/). You can access the API endpoints directly from the browser at the root (`/`) endpoint as we've set up the Swagger UI documentation for easy testing.
+=======
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 
 > [!IMPORTANT]
 > **Note:** The backend API may spin down due to inactivity, so you may need to wait for up to 2 minutes for the API to start up again. Feel free to test the API endpoints and explore the application. Or, you can run the backend locally and connect it to the frontend for a more seamless experience.
@@ -99,6 +113,7 @@ The backend is also deployed with Render and is available at [https://employee-m
 
 ## Key Technologies
 
+<<<<<<< HEAD
 - **React (Frontend)**: A modern JavaScript library for building user interfaces, providing a responsive and interactive experience.
   - **React Router**: A routing library for React that enables navigation and URL handling in single-page applications.
   - **Chart.js**: A JavaScript library for creating responsive and customizable charts and graphs.
@@ -731,3 +746,53 @@ Created with ❤️ by [Son Nguyen](https://github.com/hoangsonww) in 2024.
 ---
 
 **[⬆ Back to Top](#employee-management-full-stack-application)**
+=======
+Frontend — React Ecosystem
+
+React – Modern JavaScript library for building responsive UIs
+
+React Router – Client-side routing for single-page apps
+
+Redux – Centralized state management
+
+Axios – Simplified HTTP requests and API integration
+
+Tailwind CSS – Utility-first CSS framework for fast, modern styling
+
+Chart.js – Interactive data visualization
+
+Jest & React Testing Library – Unit and integration testing tools
+
+Backend — Spring Boot & Java
+
+Spring Boot – Production-ready Java framework for web and enterprise applications
+
+Spring Data JPA & Hibernate – ORM and database management
+
+Spring Boot Actuator – Monitoring and management endpoints
+
+RESTful APIs – Secure communication between backend and frontend
+
+JUnit 5 – Test automation for backend services
+
+Swagger / OpenAPI – API documentation and testing
+
+DevOps & Infrastructure
+
+Docker – Containerized application packaging
+
+Kubernetes – Automated container orchestration
+
+Jenkins – CI/CD automation and build pipeline
+
+MySQL – Relational database for structured data
+
+MongoDB – NoSQL database for flexible data modeling
+
+Coding Standards
+
+Airbnb JavaScript Style Guide – Clean and consistent JavaScript practices
+
+Google Java Style Guide – Structured, readable Java code conventions
+
+>>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
