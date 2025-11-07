@@ -23,10 +23,6 @@ function Employeepage() {
           <span>Daily Report</span>
         </Link>
 
-        <Link to="#" className="circle">
-          <img src={chatimg} alt="Group Chat" />
-          <span>Group Chat</span>
-        </Link>
 
         <Link to="/employee/emptimer" className="circle">
           <img src={worktimer} alt="Work Timer" />
@@ -41,11 +37,6 @@ function Employeepage() {
         <Link to="/profile" className="circle">
           <img src={profile} alt="Profile" />
           <span>Profile</span>
-        </Link>
-
-        <Link to="#" className="circle">
-          <img src={setting} alt="Settings" />
-          <span>Settings</span>
         </Link>
       </div>
     </div>

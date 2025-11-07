@@ -30,12 +30,6 @@ function Hrhomepage() {
                     <span>Arrange Calendar</span>
                   </Link>
                 </div>
-                <div className="nav-item">
-                  <Link to="/hradmin/groupchat">
-                    <i className="fas fa-boxes"></i>
-                    <span>Group Chat</span>
-                  </Link>
-                </div>
                 <div className="menu-heading">Reports</div>
                 <div className="nav-item">
                   <Link to="/hradmin/dailyattendance">
@@ -48,20 +42,7 @@ function Hrhomepage() {
                     <i className="fas fa-boxes"></i>
                     <span>Daily Reports</span>
                   </Link>
-                </div>
-                <div className="menu-heading">Admin</div>
-                <div className="nav-item">
-                  <i className="fas fa-cog"></i>
-                  <span>Settings</span>
-                </div>
-                <div className="nav-item">
-                  <i className="fas fa-bell"></i>
-                  <span>Notifications</span>
-                </div>
-                <div className="nav-item">
-                  <i className="fas fa-shield-alt"></i>
-                  <span>Security</span>
-                </div>
+                </div>                
               </div>
             </div>
 

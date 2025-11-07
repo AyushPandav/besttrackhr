@@ -3,59 +3,45 @@ import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './EmpYearCalender.css';
+import axios from 'axios';
 
 const localizer = momentLocalizer(moment);
+
+// ✅ Your MockAPI endpoint
+const SPRINGBOOT_URL = "https://6908882f2d902d0651b0b8b2.mockapi.io/mysql-server-localhost/AddCalender";
 
 function EmpYearCalender() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Function to load events from localStorage
-  const loadEvents = () => {
+  // Fetch calendar data from API
+  const fetchCalendarEvents = async () => {
     try {
-      const storedEvents = localStorage.getItem('calendarEvents');
-      const lastUpdated = localStorage.getItem('calendarEventsLastUpdated');
-      const now = Date.now();
-      const thirtyMinutes = 30 * 60 * 1000; // 30 minutes in milliseconds
+      const response = await axios.get(SPRINGBOOT_URL);
+      const data = response.data;
 
-      if (storedEvents && lastUpdated && now - parseInt(lastUpdated, 10) <= thirtyMinutes) {
-        const parsedEvents = JSON.parse(storedEvents);
-        const formattedEvents = parsedEvents.map(event => ({
-          id: event.id,
-          title: event.description,
-          start: new Date(event.date),
-          end: new Date(event.date),
-        }));
-        setEvents(formattedEvents);
-      } else {
-        localStorage.removeItem('calendarEvents');
-        localStorage.removeItem('calendarEventsLastUpdated');
-        setEvents([]);
-      }
+      // Transform API data into react-big-calendar event format
+      const formattedEvents = data.map(event => ({
+        id: event.id,
+        title: event.description || event.title || "No Description",
+        start: new Date(event.date),
+        end: new Date(event.date),
+        allDay: true
+      }));
+
+      setEvents(formattedEvents);
     } catch (err) {
-      setError('Failed to fetch calendar events from localStorage');
-      console.error(err);
+      console.error("Error fetching calendar events:", err);
+      setError("Failed to load calendar events from server.");
     } finally {
       setLoading(false);
     }
   };
 
-  // Load events on mount
+  // Fetch on mount
   useEffect(() => {
-    loadEvents();
-  }, []);
-
-  // Listen for storage changes (for real-time updates)
-  useEffect(() => {
-    const handleStorageChange = (e) => {
-      if (e.key === 'calendarEvents' || e.key === 'calendarEventsLastUpdated') {
-        loadEvents();
-      }
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    fetchCalendarEvents();
   }, []);
 
   if (loading) return <div className="calendar-loading">Loading calendar events...</div>;
@@ -71,6 +57,14 @@ function EmpYearCalender() {
           startAccessor="start"
           endAccessor="end"
           style={{ height: '100%' }}
+          eventPropGetter={() => ({
+            style: {
+              backgroundColor: '#007acc',
+              color: '#fff',
+              borderRadius: '6px',
+              padding: '4px'
+            },
+          })}
         />
       </div>
     </div>

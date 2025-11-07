@@ -35,14 +35,11 @@ const Footer = () => {
               <Link href="/" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
                 Home
               </Link>
-              <Link href="/dashboard" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
+              <Link href="/employee/emppage" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
                 Dashboard
               </Link>
               <Link href="/employees" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
                 Employees
-              </Link>
-              <Link href="/departments" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
-                Departments
               </Link>
               <Link href="/profile" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
                 Profile
@@ -50,7 +47,7 @@ const Footer = () => {
               <Link href="/login" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
                 Login
               </Link>
-              <Link href="/register" color="inherit" underline="none" sx={{ display: 'block', '&:hover': { color: '#f57c00' } }}>
+              <Link href="/registerpage" color="inherit" underline="none" sx={{ display: 'block', '&:hover': { color: '#f57c00' } }}>
                 Register
               </Link>
             </Box>
@@ -63,19 +60,19 @@ const Footer = () => {
             </Typography>
             <Typography variant="body2">
               Project Maintainer:{' '}
-              <Link href="https://github.com/hoangsonww" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
-                Son Nguyen
+              <Link href="https://github.com/AyushPandav/besttrackhr" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
+                Tanish Jaiswal, Ayush Pandav, Maaz Mukadam, Piyush Patil
               </Link>
             </Typography>
             <Typography variant="body2">
               Email:{' '}
-              <Link href="mailto:hoangson091104@gmail.com" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
-                hoangson091104@gmail.com
+              <Link href="mailto:fs22if021@gmail.com" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
+                fs22if021@gmail.com
               </Link>
             </Typography>
-            <Typography variant="body2">Phone: +1 (123) 456-7890</Typography>
+            <Typography variant="body2">Phone: +91 828295821</Typography>
             <Typography variant="body2" sx={{ marginTop: '0.5rem' }}>
-              Address: 123 Employee St, Suite 100, New York, NY 10001
+              Kolset Thane, 400607, Amara, 
             </Typography>
           </Grid>
         </Grid>

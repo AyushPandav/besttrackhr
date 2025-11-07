@@ -4,45 +4,58 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Table from 'react-bootstrap/Table';
+import axios from 'axios';
 
 function AddDelUsers() {
   const [show, setShow] = useState(false);
   const [userProfiles, setUserProfiles] = useState([]);
   const [error, setError] = useState(null);
+  const [backendUp, setBackendUp] = useState(false); // ✅ Check backend
+
+  const SPRINGBOOT_URL = "https://6908882f2d902d0651b0b8b2.mockapi.io/mysql-server-localhost/users";
+  const SPRING_BOOT_URL = "http://localhost:8080"; // Replace with your ping endpoint
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // Form state
   const [formData, setFormData] = useState({
     username: "",
     designation: "",
     phone: ""
   });
 
-  // Fetch user profiles from localStorage on component mount
-  useEffect(() => {
+  // 🧪 Check if Spring Boot server is running
+  const checkBackend = async () => {
     try {
-      const storedUsers = localStorage.getItem('userProfiles');
-      if (storedUsers) {
-        setUserProfiles(JSON.parse(storedUsers));
-      }
+      await axios.get(SPRING_BOOT_URL);
+      setBackendUp(true);
+      setError(null);
     } catch (err) {
-      setError('Failed to fetch user profiles from localStorage.');
-      console.error('Error fetching user profiles:', err);
+      setBackendUp(false);
+      setError("Spring Boot backend is not running.");
     }
+  };
+
+  // Check backend initially and retry every 5 seconds
+  useEffect(() => {
+    checkBackend();
+    const interval = setInterval(checkBackend, 5000); // retry every 5 seconds
+    return () => clearInterval(interval);
   }, []);
 
-  // Save user profiles to localStorage whenever userProfiles change
+  // 🧠 Fetch all users from MockAPI only if backend is up
   useEffect(() => {
-    try {
-      localStorage.setItem('userProfiles', JSON.stringify(userProfiles));
-    } catch (err) {
-      setError('Failed to save user profiles to localStorage.');
-      console.error('Error saving user profiles:', err);
-    }
-  }, [userProfiles]);
+    if (!backendUp) return;
 
+    axios.get(SPRINGBOOT_URL)
+      .then((res) => setUserProfiles(res.data))
+      .catch((err) => {
+        console.error(err);
+        setError("Failed to fetch user profiles from MockAPI.");
+      });
+  }, [backendUp]);
+
+  // 🖊️ Handle input change
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -50,32 +63,40 @@ function AddDelUsers() {
     });
   };
 
-  const handleSubmit = (e) => {
+  // ➕ Add user (POST request)
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!backendUp) {
+      setError("Cannot add user: Spring Boot backend is not running.");
+      return;
+    }
+
     try {
-      const newUserProfile = {
-        id: Date.now(), // Use timestamp as a unique ID
-        username: formData.username,
-        designation: formData.designation,
-        phone: formData.phone
-      };
-      setUserProfiles([...userProfiles, newUserProfile]);
+      const res = await axios.post(SPRINGBOOT_URL, formData);
+      setUserProfiles([...userProfiles, res.data]);
       setFormData({ username: "", designation: "", phone: "" });
       setShow(false);
       setError(null);
     } catch (err) {
-      setError('Failed to add user profile. Please try again.');
-      console.error('Error adding user profile:', err);
+      console.error(err);
+      setError("Failed to add user to MockAPI.");
     }
   };
 
-  const handleDelete = (id) => {
+  // ❌ Delete user (DELETE request)
+  const handleDelete = async (id) => {
+    if (!backendUp) {
+      setError("Cannot delete user: Spring Boot backend is not running.");
+      return;
+    }
+
     try {
-      setUserProfiles(userProfiles.filter(user => user.id !== id));
+      await axios.delete(`${SPRINGBOOT_URL}/${id}`);
+      setUserProfiles(userProfiles.filter((user) => user.id !== id));
       setError(null);
     } catch (err) {
-      setError('Failed to delete user profile. Please try again.');
-      console.error('Error deleting user profile:', err);
+      console.error(err);
+      setError("Failed to delete user from MockAPI.");
     }
   };
 
@@ -106,12 +127,6 @@ function AddDelUsers() {
               <span>Arrange Calendar</span>
             </Link>
           </div>
-          <div className="nav-item">
-            <Link to="/hradmin/groupchat">
-              <i className="fas fa-boxes"></i>
-              <span>Group Chat</span>
-            </Link>
-          </div>
           <div className="menu-heading">Reports</div>
           <div className="nav-item">
             <Link to="/hradmin/dailyattendance">
@@ -124,19 +139,6 @@ function AddDelUsers() {
               <i className="fas fa-boxes"></i>
               <span>Daily Reports</span>
             </Link>
-          </div>
-          <div className="menu-heading">Admin</div>
-          <div className="nav-item">
-            <i className="fas fa-cog"></i>
-            <span>Settings</span>
-          </div>
-          <div className="nav-item">
-            <i className="fas fa-bell"></i>
-            <span>Notifications</span>
-          </div>
-          <div className="nav-item">
-            <i className="fas fa-shield-alt"></i>
-            <span>Security</span>
           </div>
         </div>
       </div>
@@ -174,7 +176,7 @@ function AddDelUsers() {
             <button className="btn btn-outline">
               <i className="fas fa-download"></i> Users
             </button>
-            <button className="btn btn-primary" onClick={handleShow}>
+            <button className="btn btn-primary" onClick={handleShow} disabled={!backendUp}>
               <i className="fas fa-plus"></i> Add New
             </button>
           </div>
@@ -207,7 +209,7 @@ function AddDelUsers() {
                   <td>{user.designation}</td>
                   <td>{user.phone}</td>
                   <td>
-                    <Button variant="danger" onClick={() => handleDelete(user.id)}>
+                    <Button variant="danger" onClick={() => handleDelete(user.id)} disabled={!backendUp}>
                       Delete
                     </Button>
                   </td>
@@ -237,6 +239,7 @@ function AddDelUsers() {
                   onChange={handleChange}
                   placeholder="Enter user name"
                   required
+                  disabled={!backendUp}
                 />
               </Form.Group>
 
@@ -249,6 +252,7 @@ function AddDelUsers() {
                   onChange={handleChange}
                   placeholder="Enter designation"
                   required
+                  disabled={!backendUp}
                 />
               </Form.Group>
 
@@ -261,14 +265,15 @@ function AddDelUsers() {
                   onChange={handleChange}
                   placeholder="Enter phone number"
                   required
+                  disabled={!backendUp}
                 />
               </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+              <Button variant="secondary" onClick={handleClose} disabled={!backendUp}>
                 Cancel
               </Button>
-              <Button type="submit" variant="primary">
+              <Button type="submit" variant="primary" disabled={!backendUp}>
                 Save User
               </Button>
             </Modal.Footer>

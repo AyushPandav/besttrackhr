@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
-import { Box, TextField, Button, Typography, Paper } from '@mui/material';
+import React, { useState } from "react";
+import axios from "axios";
+import { Box, TextField, Button, Typography, Paper } from "@mui/material";
+
+// ✅ Named as SPRING_BOOT_URL (per your request), but this points to your MockAPI
+const SPRING_BOOT_URL = "https://6908f1ab2d902d0651b237fc.mockapi.io/daily-report";
 
 const EmpDailyReport = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    task: '',
-    date: '',
+    name: "",
+    email: "",
+    task: "",
+    date: "",
   });
 
   const handleChange = (e) => {
@@ -14,32 +18,40 @@ const EmpDailyReport = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Report submitted:', formData);
-    alert('Daily Report Submitted Successfully!');
-    setFormData({ name: '', email: '', task: '', date: '' });
+
+    try {
+      await axios.post(SPRING_BOOT_URL, formData);
+      alert("✅ Daily Report Submitted Successfully!");
+
+      // Reset form
+      setFormData({ name: "", email: "", task: "", date: "" });
+    } catch (error) {
+      console.error("❌ Error submitting report:", error);
+      alert("❌ Failed to submit report. Please try again.");
+    }
   };
 
   return (
     <Box
       sx={{
-        minHeight: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        background: 'linear-gradient(135deg, #f4f4f4ff, #e5e5e5ff)',
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        background: "linear-gradient(135deg, #f4f4f4ff, #e5e5e5ff)",
         padding: 2,
-      }}  
+      }}
     >
       <Paper
         elevation={6}
         sx={{
           p: 4,
-          width: '100%',
+          width: "100%",
           maxWidth: 450,
           borderRadius: 3,
-          backgroundColor: '#ffffff',
+          backgroundColor: "#ffffff",
         }}
       >
         <Typography
@@ -106,12 +118,12 @@ const EmpDailyReport = () => {
             sx={{
               mt: 2,
               py: 1,
-              fontWeight: 'bold',
+              fontWeight: "bold",
               borderRadius: 2,
-              textTransform: 'none',
-              transition: '0.3s',
-              '&:hover': {
-                backgroundColor: '#2e3b8f',
+              textTransform: "none",
+              transition: "0.3s",
+              "&:hover": {
+                backgroundColor: "#2e3b8f",
               },
             }}
           >

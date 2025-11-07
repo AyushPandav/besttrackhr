@@ -1,89 +1,93 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function AddCalender() {
   const [date, setDate] = useState("");
   const [text, setText] = useState("");
   const [events, setEvents] = useState([]);
   const [error, setError] = useState(null);
+  const [backendUp, setBackendUp] = useState(false); // ✅ Check backend
 
-  // Function to load events from localStorage
-  const loadEvents = () => {
+  const SPRINGBOOT_URL = "https://6908882f2d902d0651b0b8b2.mockapi.io/mysql-server-localhost/AddCalender";
+  const SPRING_BOOT_URL = "http://localhost:8080"; // Replace with your ping endpoint
+
+  // 🧪 Check if Spring Boot server is running
+  const checkBackend = async () => {
     try {
-      const storedEvents = localStorage.getItem("calendarEvents");
-      const lastUpdated = localStorage.getItem("calendarEventsLastUpdated");
-      const now = Date.now();
-      const thirtyMinutes = 30 * 60 * 1000; // 30 minutes in milliseconds
-
-      if (storedEvents && lastUpdated && now - parseInt(lastUpdated, 10) <= thirtyMinutes) {
-        setEvents(JSON.parse(storedEvents));
-      } else {
-        localStorage.removeItem("calendarEvents");
-        localStorage.removeItem("calendarEventsLastUpdated");
-        setEvents([]);
-      }
+      await axios.get(SPRING_BOOT_URL);
+      setBackendUp(true);
+      setError(null);
     } catch (err) {
-      setError("Failed to fetch calendar events. Please try again.");
-      console.error(err);
+      setBackendUp(false);
+      setError("Spring Boot backend is not running. MockAPI actions disabled.");
     }
   };
 
-  // Load events on mount
+  // Check backend initially and retry every 5 seconds
+  useEffect(() => {
+    checkBackend();
+    const interval = setInterval(checkBackend, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // 🧠 Load events from MockAPI only if backend is up
+  const loadEvents = async () => {
+    if (!backendUp) return;
+    try {
+      const res = await axios.get(SPRINGBOOT_URL);
+      setEvents(res.data);
+    } catch (err) {
+      console.error(err);
+      setError("Failed to fetch events from Backend.");
+    }
+  };
+
   useEffect(() => {
     loadEvents();
-  }, []);
-
-  // Save events to localStorage and update timestamp whenever events change
-  useEffect(() => {
-    try {
-      localStorage.setItem("calendarEvents", JSON.stringify(events));
-      localStorage.setItem("calendarEventsLastUpdated", Date.now().toString());
-    } catch (err) {
-      setError("Failed to save events to localStorage.");
-      console.error(err);
-    }
-  }, [events]);
-
-  // Listen for storage changes (for real-time updates)
-  useEffect(() => {
-    const handleStorageChange = (e) => {
-      if (e.key === "calendarEvents" || e.key === "calendarEventsLastUpdated") {
-        loadEvents();
-      }
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
+  }, [backendUp]);
 
   // Handle form submission to add a new event
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!backendUp) {
+      setError("Cannot add event: Spring Boot backend is not running.");
+      return;
+    }
+
     try {
       const newEvent = {
-        id: Date.now(),
         date,
         description: text,
       };
-      setEvents([...events, newEvent]);
+      const res = await axios.post(SPRINGBOOT_URL, newEvent);
+      setEvents([...events, res.data]);
       setDate("");
       setText("");
+      setError(null);
       alert("Event added successfully!");
     } catch (err) {
-      setError("Failed to add event. Please try again.");
       console.error(err);
+      setError("Failed to add event to MockAPI.");
     }
   };
 
   // Handle event deletion
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
+    if (!backendUp) {
+      setError("Cannot delete event: Spring Boot backend is not running.");
+      return;
+    }
+
     if (window.confirm("Are you sure you want to delete this event?")) {
       try {
+        await axios.delete(`${SPRINGBOOT_URL}/${id}`);
         setEvents(events.filter((event) => event.id !== id));
+        setError(null);
         alert("Event deleted successfully!");
       } catch (err) {
-        setError("Failed to delete event. Please try again.");
         console.error(err);
+    setError("Failed to delete event from Spring boot.");
       }
     }
   };
@@ -115,12 +119,6 @@ function AddCalender() {
               <span>Arrange Calendar</span>
             </Link>
           </div>
-          <div className="nav-item">
-            <Link to="/hradmin/groupchat">
-              <i className="fas fa-boxes"></i>
-              <span>Group Chat</span>
-            </Link>
-          </div>
           <div className="menu-heading">Reports</div>
           <div className="nav-item">
             <Link to="/hradmin/dailyattendance">
@@ -133,19 +131,6 @@ function AddCalender() {
               <i className="fas fa-boxes"></i>
               <span>Daily Reports</span>
             </Link>
-          </div>
-          <div className="menu-heading">Admin</div>
-          <div className="nav-item">
-            <i className="fas fa-cog"></i>
-            <span>Settings</span>
-          </div>
-          <div className="nav-item">
-            <i className="fas fa-bell"></i>
-            <span>Notifications</span>
-          </div>
-          <div className="nav-item">
-            <i className="fas fa-shield-alt"></i>
-            <span>Security</span>
           </div>
         </div>
       </div>
@@ -179,15 +164,10 @@ function AddCalender() {
       <div className="main-content">
         <div className="page-title">
           <div className="title">Arrange Calendar</div>
-          <div className="action-buttons">
-            <button className="btn btn-outline">
-              <i className="fas fa-download"></i> Export Events
-            </button>
-            <button className="btn btn-primary">
-              <i className="fas fa-plus"></i> Add New Event
-            </button>
-          </div>
         </div>
+
+        {/* Error Message */}
+        {error && <div className="alert alert-danger">{error}</div>}
 
         {/* Add Event Form */}
         <div className="row justify-content-center">
@@ -195,31 +175,30 @@ function AddCalender() {
             <div className="card shadow-sm">
               <div className="card-body p-4">
                 <h2 className="card-title text-center mb-4">Add Calendar Event</h2>
-                {error && <div className="alert alert-danger">{error}</div>}
                 <form className="row g-2 align-items-center" onSubmit={handleSubmit}>
                   <div className="col-md-4">
                     <input
                       type="date"
                       className="form-control"
-                      id="dateInput"
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
                       required
+                      disabled={!backendUp}
                     />
                   </div>
                   <div className="col-md-5">
                     <input
                       type="text"
                       className="form-control"
-                      id="textInput"
                       placeholder="Enter event description (e.g., Holiday)"
                       value={text}
                       onChange={(e) => setText(e.target.value)}
                       required
+                      disabled={!backendUp}
                     />
                   </div>
                   <div className="col-md-3 d-grid">
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn btn-primary" disabled={!backendUp}>
                       Add Event
                     </button>
                   </div>
@@ -255,6 +234,7 @@ function AddCalender() {
                             <button
                               className="btn btn-danger btn-sm"
                               onClick={() => handleDelete(event.id)}
+                              disabled={!backendUp}
                             >
                               Delete
                             </button>

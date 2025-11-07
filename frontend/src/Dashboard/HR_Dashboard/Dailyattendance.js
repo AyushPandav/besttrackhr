@@ -2,80 +2,40 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+const WORK_TIMER_URL = "https://6908f1ab2d902d0651b237fc.mockapi.io/Work-timer";
+
 function Dailyattendance() {
-  const [users, setUsers] = useState([]);
-  const [attendance, setAttendance] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split("T")[0]);
+  const [records, setRecords] = useState([]);
   const [error, setError] = useState(null);
 
-  // Fetch users and attendance on mount and when date changes
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get("http://localhost:8080/api/attendance/users", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUsers(response.data);
-      } catch (err) {
-        setError("Failed to fetch users. Please try again.");
-        console.error(err);
-      }
-    };
-
-    const fetchAttendance = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(`http://localhost:8080/api/attendance?date=${selectedDate}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setAttendance(response.data);
-      } catch (err) {
-        setError("Failed to fetch attendance. Please try again.");
-        console.error(err);
-      }
-    };
-
-    fetchUsers();
-    fetchAttendance();
-  }, [selectedDate]);
-
-  // Handle status change
-  const handleStatusChange = async (userId, status) => {
+  // Fetch work timer records
+  const fetchRecords = async () => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "http://localhost:8080/api/attendance/hr",
-        null,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          params: { userId, date: selectedDate, status },
-        }
-      );
-      setAttendance((prev) =>
-        prev.some((att) => att.user.id === userId && att.date === selectedDate)
-          ? prev.map((att) =>
-              att.user.id === userId && att.date === selectedDate ? response.data : att
-            )
-          : [...prev, response.data]
-      );
-      alert("Attendance updated successfully!");
+      const response = await axios.get(WORK_TIMER_URL);
+      setRecords(response.data);
+      setError(null);
     } catch (err) {
-      setError("Failed to update attendance. Please try again.");
-      console.error(err);
+      console.error("Error fetching work timer records:", err);
+      setError("Failed to fetch work timer records.");
     }
   };
 
-  // Merge users and attendance data
-  const mergedData = users.map((user) => {
-    const att = attendance.find((a) => a.user.id === user.id && a.date === selectedDate);
-    return {
-      id: user.id,
-      name: user.name,
-      designation: user.role === "HR" ? "HR Manager" : "Employee",
-      status: att ? att.status : "Not Marked",
-    };
-  });
+  useEffect(() => {
+    fetchRecords();
+  }, []);
+
+  // Handle delete
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this record?")) return;
+    try {
+      await axios.delete(`${WORK_TIMER_URL}/${id}`);
+      alert("Record deleted successfully!");
+      fetchRecords();
+    } catch (err) {
+      console.error("Error deleting record:", err);
+      alert("Failed to delete record.");
+    }
+  };
 
   return (
     <div className="containers">
@@ -104,12 +64,6 @@ function Dailyattendance() {
               <span>Arrange Calendar</span>
             </Link>
           </div>
-          <div className="nav-item">
-            <Link to="/hradmin/groupchat">
-              <i className="fas fa-boxes"></i>
-              <span>Group Chat</span>
-            </Link>
-          </div>
           <div className="menu-heading">Reports</div>
           <div className="nav-item active">
             <Link to="/hradmin/dailyattendance">
@@ -122,19 +76,6 @@ function Dailyattendance() {
               <i className="fas fa-boxes"></i>
               <span>Daily Reports</span>
             </Link>
-          </div>
-          <div className="menu-heading">Admin</div>
-          <div className="nav-item">
-            <i className="fas fa-cog"></i>
-            <span>Settings</span>
-          </div>
-          <div className="nav-item">
-            <i className="fas fa-bell"></i>
-            <span>Notifications</span>
-          </div>
-          <div className="nav-item">
-            <i className="fas fa-shield-alt"></i>
-            <span>Security</span>
           </div>
         </div>
       </div>
@@ -167,72 +108,42 @@ function Dailyattendance() {
       {/* Main Content */}
       <div className="main-content">
         <div className="page-title">
-          <div className="title">Daily Attendance</div>
-          <div className="action-buttons">
-            <button className="btn btn-outline">
-              <i className="fas fa-download"></i> Export
-            </button>
-            <button className="btn btn-primary">
-              <i className="fas fa-plus"></i> Mark Attendance
-            </button>
-          </div>
+          <div className="title">Work Timer Records</div>
         </div>
 
-        {/* Date Picker */}
-        <div className="row mb-3">
-          <div className="col-md-4">
-            <label htmlFor="dateInput" className="form-label">Select Date</label>
-            <input
-              type="date"
-              className="form-control"
-              id="dateInput"
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-            />
-          </div>
-        </div>
-
-        {/* Attendance Table */}
         <div className="attendance-table">
           {error && <div className="alert alert-danger">{error}</div>}
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Designation</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {mergedData.length === 0 ? (
+          {records.length === 0 ? (
+            <p>No work timer records found.</p>
+          ) : (
+            <table className="table table-striped">
+              <thead>
                 <tr>
-                  <td colSpan="4">No users found.</td>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Worked Time</th>
+                  <th>Actions</th>
                 </tr>
-              ) : (
-                mergedData.map((emp) => (
-                  <tr key={emp.id}>
-                    <td>{emp.id}</td>
-                    <td>{emp.name}</td>
-                    <td>{emp.designation}</td>
+              </thead>
+              <tbody>
+                {records.map((record) => (
+                  <tr key={record.id}>
+                    <td>{record.id}</td>
+                    <td>{record.name}</td>
+                    <td>{record.workedTime}</td>
                     <td>
-                      <select
-                        className="form-select"
-                        value={emp.status}
-                        onChange={(e) => handleStatusChange(emp.id, e.target.value)}
-                        disabled={localStorage.getItem("role") !== "HR"}
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => handleDelete(record.id)}
                       >
-                        <option value="Not Marked">Not Marked</option>
-                        <option value="Present">Present</option>
-                        <option value="Absent">Absent</option>
-                        <option value="Late">Late</option>
-                      </select>
+                        Delete
+                      </button>
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
     </div>

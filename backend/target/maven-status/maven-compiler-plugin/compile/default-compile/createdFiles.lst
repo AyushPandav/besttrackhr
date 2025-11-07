@@ -7,6 +7,7 @@ com\example\employeemanagement\controller\HomeController.class
 com\example\employeemanagement\security\SecurityConfig.class
 com\example\employeemanagement\service\AttendanceService.class
 com\example\employeemanagement\config\WebConfig.class
+com\example\employeemanagement\controller\UserDTO.class
 com\example\employeemanagement\controller\UserProfileController.class
 com\example\employeemanagement\exception\ResourceNotFoundException.class
 com\example\employeemanagement\repository\CalendarEventRepository.class
@@ -35,3 +36,4 @@ com\example\employeemanagement\model\Department.class
 com\example\employeemanagement\config\CorsConfig$1.class
 com\example\employeemanagement\model\Employee.class
 com\example\employeemanagement\controller\AttendanceController.class
+com\example\employeemanagement\controller\AddDelUserController.class

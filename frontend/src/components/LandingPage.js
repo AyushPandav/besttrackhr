@@ -281,9 +281,9 @@ const LandingPage = () => {
               <Link to="/loginpage" className="btn-secondary btn-large">
                 Schedule Demo
               </Link>
-              <Link to="/test-auth" className="btn-secondary btn-large" style={{marginLeft: '10px', backgroundColor: '#ff6b35'}}>
+              {/* <Link to="/test-auth" className="btn-secondary btn-large" style={{marginLeft: '10px', backgroundColor: '#ff6b35'}}>
                 🔧 Test Auth
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>

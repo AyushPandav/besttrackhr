@@ -155,19 +155,6 @@ const Navbar = () => {
               </Button>
 
               <Button
-                color={isActive('/blogs') ? 'primary' : 'inherit'}
-                component={Link}
-                to="/blogs"
-                sx={{
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  color: isActive('/blogs') ? '#3e75ffff' : '#1c1c1c',
-                }}
-              >
-                Blogs
-              </Button>
-
-              <Button
                 color={isActive('/profile') ? 'primary' : 'inherit'}
                 component={Link}
                 to="/profile"
