@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
 import { Link, useNavigate } from 'react-router-dom';
 import './Loginpage.css';
 import authService from '../services/authService';
@@ -25,45 +24,50 @@ const Loginpage = () => {
     setError('');
 
     try {
-      // In a real app, you would integrate with Google OAuth
-      // For now, we'll simulate the process
+      // Simulate Google OAuth (Replace with real Google Identity Services in production)
       const googleUser = await simulateGoogleSignIn();
-      
+
       const result = await authService.googleLogin(googleUser.idToken, selectedRole);
 
       if (result.success) {
-        // Navigate based on role
-        navigate(authService.getRedirectPath());
+        const redirectPath = authService.getRedirectPath();
+        navigate(redirectPath);
       } else {
         setError(result.error || 'Google sign-in failed. Please try again.');
       }
-    } catch (error) {
+    } catch (err) {
       setError('Google sign-in failed. Please try again.');
-      console.error('Google sign-in error:', error);
+      console.error('Google OAuth error:', err);
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Simulate Google Sign-In (Replace with Google Identity Services)
   const simulateGoogleSignIn = () => {
     return new Promise((resolve) => {
-      // Simulate Google OAuth flow
       setTimeout(() => {
         resolve({
-          idToken: 'mock-google-id-token',
+          idToken: 'mock-google-id-token-12345',
           email: 'user@example.com',
-          name: 'John Doe'
+          name: 'John Doe',
+          picture: 'https://via.placeholder.com/100'
         });
-      }, 1000);
+      }, 1200);
     });
   };
 
   const handleTraditionalLogin = () => {
-    navigate('/login');
+    if (!selectedRole) {
+      setError('Please select your role first');
+      return;
+    }
+    navigate('/login', { state: { role: selectedRole } });
   };
 
   return (
     <div className="modern-login-container">
+      {/* Left Panel - Branding & Features */}
       <div className="login-left-panel">
         <div className="login-background">
           <div className="login-overlay"></div>
@@ -73,11 +77,15 @@ const Loginpage = () => {
             <div className="element element-3"></div>
           </div>
         </div>
+
         <div className="login-content">
-          <h1 className="login-brand">Team Track</h1>
+          <h1 className="login-brand">
+            <span className="gradient-text">Team Track</span>
+          </h1>
           <p className="login-tagline">
             Streamline your workforce management with our intelligent HR platform
           </p>
+
           <div className="login-features">
             <div className="feature-item">
               <i className="bi bi-shield-check"></i>
@@ -88,40 +96,50 @@ const Loginpage = () => {
               <span>Role-based Access</span>
             </div>
             <div className="feature-item">
-              <i className="bi bi-calendar-check"></i>
-              <span>Smart Calendar</span>
+              <i className="bi bi-graph-up-arrow"></i>
+              <span>Real-time Analytics</span>
+            </div>
+            <div className="feature-item">
+              <i className="bi bi-phone"></i>
+              <span>Mobile Ready</span>
             </div>
           </div>
         </div>
       </div>
 
+      {/* Right Panel - Login Form */}
       <div className="login-right-panel">
         <div className="login-form-container">
           <div className="login-header">
             <h2 className="login-title">Welcome Back</h2>
-            <p className="login-subtitle">Sign in to your account to continue</p>
+            <p className="login-subtitle">Choose your role to continue</p>
           </div>
 
+          {/* Error Message */}
           {error && (
             <div className="error-message">
-              <i className="bi bi-exclamation-circle"></i>
+              <i className="bi bi-exclamation-triangle-fill"></i>
               <span>{error}</span>
             </div>
           )}
 
+          {/* Role Selection */}
           <div className="role-selection">
             <h3 className="role-title">I am a:</h3>
             <div className="role-buttons">
               <button
                 className={`role-btn ${selectedRole === 'EMPLOYEE' ? 'active' : ''}`}
                 onClick={() => handleRoleSelection('EMPLOYEE')}
+                disabled={isLoading}
               >
                 <i className="bi bi-person-fill"></i>
                 <span>Employee</span>
               </button>
+
               <button
                 className={`role-btn ${selectedRole === 'HR' ? 'active' : ''}`}
                 onClick={() => handleRoleSelection('HR')}
+                disabled={isLoading}
               >
                 <i className="bi bi-briefcase-fill"></i>
                 <span>HR Manager</span>
@@ -129,14 +147,20 @@ const Loginpage = () => {
             </div>
           </div>
 
+          {/* Login Options */}
           <div className="login-options">
+            {/* Google Sign-In */}
             <button
               className="google-signin-btn"
               onClick={handleGoogleSignIn}
               disabled={!selectedRole || isLoading}
             >
               {isLoading ? (
-                <div className="spinner"></div>
+                <div className="spinner">
+                  <div className="dot"></div>
+                  <div className="dot"></div>
+                  <div className="dot"></div>
+                </div>
               ) : (
                 <i className="bi bi-google"></i>
               )}
@@ -149,15 +173,18 @@ const Loginpage = () => {
               <span>or</span>
             </div>
 
+            {/* Traditional Login */}
             <button
               className="traditional-login-btn"
               onClick={handleTraditionalLogin}
+              disabled={isLoading}
             >
               <i className="bi bi-envelope-fill"></i>
               <span>Sign in with Email</span>
             </button>
           </div>
 
+          {/* Footer */}
           <div className="login-footer">
             <p>
               Don't have an account?{' '}
@@ -166,27 +193,6 @@ const Loginpage = () => {
               </Link>
             </p>
           </div>
-=======
-import './Loginpage.css';
-
-
-const Loginpage = () => {
-  return (
-   <div className="login-container">
-      <div className="left-panel"></div>
-      <div className="right-panel">
-        <h1 className="sign-in-title">Sign in as</h1>
-        <p className="description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nunc justo.
-        </p>
-        <button className="employee-btn">EMPLOYEE</button>
-        <button className="hr-btn">HR</button>
-        <div className="dots">
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
         </div>
       </div>
     </div>

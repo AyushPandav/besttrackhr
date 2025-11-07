@@ -21,8 +21,8 @@ const Footer = () => {
               About Us
             </Typography>
             <Typography variant="body2">
-              We provide a comprehensive Employee Management System that helps you manage your employees and departments with ease. Our mission is to make HR
-              processes seamless and efficient.
+              We provide a comprehensive Employee Management System that helps you manage your employees and departments with ease.
+              Our mission is to make HR processes seamless and efficient.
             </Typography>
           </Grid>
 
@@ -32,36 +32,60 @@ const Footer = () => {
               Quick Links
             </Typography>
             <Box>
-              <Link href="/" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
+              <Link
+                href="/"
+                color="inherit"
+                underline="none"
+                sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}
+              >
                 Home
               </Link>
-<<<<<<< HEAD
-              <Link href="/employee/emppage" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
-=======
-              <Link href="/dashboard" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
+              <Link
+                href="/employee/emppage"
+                color="inherit"
+                underline="none"
+                sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}
+              >
                 Dashboard
               </Link>
-              <Link href="/employees" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
+              <Link
+                href="/employees"
+                color="inherit"
+                underline="none"
+                sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}
+              >
                 Employees
               </Link>
-<<<<<<< HEAD
-=======
-              <Link href="/departments" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
+              <Link
+                href="/departments"
+                color="inherit"
+                underline="none"
+                sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}
+              >
                 Departments
               </Link>
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
-              <Link href="/profile" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
+              <Link
+                href="/profile"
+                color="inherit"
+                underline="none"
+                sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}
+              >
                 Profile
               </Link>
-              <Link href="/login" color="inherit" underline="none" sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}>
+              <Link
+                href="/login"
+                color="inherit"
+                underline="none"
+                sx={{ display: 'block', marginBottom: '0.5rem', '&:hover': { color: '#f57c00' } }}
+              >
                 Login
               </Link>
-<<<<<<< HEAD
-              <Link href="/registerpage" color="inherit" underline="none" sx={{ display: 'block', '&:hover': { color: '#f57c00' } }}>
-=======
-              <Link href="/register" color="inherit" underline="none" sx={{ display: 'block', '&:hover': { color: '#f57c00' } }}>
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
+              <Link
+                href="/registerpage"
+                color="inherit"
+                underline="none"
+                sx={{ display: 'block', '&:hover': { color: '#f57c00' } }}
+              >
                 Register
               </Link>
             </Box>
@@ -73,35 +97,28 @@ const Footer = () => {
               Contact Us
             </Typography>
             <Typography variant="body2">
-              Project Maintainer:{' '}
-<<<<<<< HEAD
-              <Link href="https://github.com/AyushPandav/besttrackhr" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
+              Project Maintainers:{' '}
+              <Link
+                href="https://github.com/AyushPandav/besttrackhr"
+                color="inherit"
+                sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}
+              >
                 Tanish Jaiswal, Ayush Pandav, Maaz Mukadam, Piyush Patil
-=======
-              <Link href="https://github.com/hoangsonww" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
-                Son Nguyen
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
               </Link>
             </Typography>
             <Typography variant="body2">
               Email:{' '}
-<<<<<<< HEAD
-              <Link href="mailto:fs22if021@gmail.com" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
+              <Link
+                href="mailto:fs22if021@gmail.com"
+                color="inherit"
+                sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}
+              >
                 fs22if021@gmail.com
               </Link>
             </Typography>
             <Typography variant="body2">Phone: +91 828295821</Typography>
             <Typography variant="body2" sx={{ marginTop: '0.5rem' }}>
-              Kolset Thane, 400607, Amara, 
-=======
-              <Link href="mailto:hoangson091104@gmail.com" color="inherit" sx={{ textDecoration: 'underline', '&:hover': { color: '#f57c00' } }}>
-                hoangson091104@gmail.com
-              </Link>
-            </Typography>
-            <Typography variant="body2">Phone: +1 (123) 456-7890</Typography>
-            <Typography variant="body2" sx={{ marginTop: '0.5rem' }}>
-              Address: 123 Employee St, Suite 100, New York, NY 10001
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
+              Kolset Thane, 400607, Amara
             </Typography>
           </Grid>
         </Grid>
@@ -115,7 +132,9 @@ const Footer = () => {
             paddingTop: '1rem',
           }}
         >
-          <Typography variant="body2">© {new Date().getFullYear()} Employee Management System. All rights reserved.</Typography>
+          <Typography variant="body2">
+            © {new Date().getFullYear()} Employee Management System. All rights reserved.
+          </Typography>
         </Box>
       </Container>
     </Box>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\panda\OneDrive\Desktop\employee_management_system\besttrackhr-main (5)\besttrackhr-main\Employee-Management-Fullstack-App-master\backend\src\main\java\com\example\employeemanagement\repository\UserRepository.java
 C:\Users\panda\OneDrive\Desktop\employee_management_system\besttrackhr-main (5)\besttrackhr-main\Employee-Management-Fullstack-App-master\backend\src\main\java\com\example\employeemanagement\config\CorsConfig.java
 C:\Users\panda\OneDrive\Desktop\employee_management_system\besttrackhr-main (5)\besttrackhr-main\Employee-Management-Fullstack-App-master\backend\src\main\java\com\example\employeemanagement\security\CustomUserDetailsService.java
@@ -36,25 +35,3 @@ C:\Users\panda\OneDrive\Desktop\employee_management_system\besttrackhr-main (5)\
 C:\Users\panda\OneDrive\Desktop\employee_management_system\besttrackhr-main (5)\besttrackhr-main\Employee-Management-Fullstack-App-master\backend\src\main\java\com\example\employeemanagement\repository\DepartmentRepository.java
 C:\Users\panda\OneDrive\Desktop\employee_management_system\besttrackhr-main (5)\besttrackhr-main\Employee-Management-Fullstack-App-master\backend\src\main\java\com\example\employeemanagement\security\JwtRequestFilter.java
 C:\Users\panda\OneDrive\Desktop\employee_management_system\besttrackhr-main (5)\besttrackhr-main\Employee-Management-Fullstack-App-master\backend\src\main\java\com\example\employeemanagement\service\EmployeeService.java
-=======
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/controller/HomeController.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/security/JwtTokenUtil.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/repository/UserRepository.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/security/SecurityConfig.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/model/User.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/EmployeeManagementApplication.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/repository/DepartmentRepository.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/controller/DepartmentController.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/security/JwtRequestFilter.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/security/CustomUserDetailsService.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/controller/AuthController.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/service/DepartmentService.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/exception/ResourceNotFoundException.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/config/DataInitializer.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/service/EmployeeService.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/controller/EmployeeController.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/model/Department.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/model/Employee.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/repository/EmployeeRepository.java
-/Users/davidnguyen/IdeaProjects/Employee-Management/backend/src/main/java/com/example/employeemanagement/config/CorsConfig.java
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d

@@ -1,11 +1,5 @@
 package com.example.employeemanagement.security;
 
-<<<<<<< HEAD
-import io.jsonwebtoken.JwtException;  // For catching JWT errors
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-=======
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,17 +19,10 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-<<<<<<< HEAD
-  private static final Logger logger = LoggerFactory.getLogger(JwtRequestFilter.class);
-
-  @Autowired private UserDetailsService userDetailsService;
-
-=======
   /** The user details service. */
   @Autowired private UserDetailsService userDetailsService;
 
   /** The JWT token util. */
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
   @Autowired private JwtTokenUtil jwtTokenUtil;
 
   /**
@@ -59,27 +46,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
     if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
       jwt = authorizationHeader.substring(7);
-<<<<<<< HEAD
-      if (jwt != null && !jwt.trim().isEmpty()) {
-        try {
-          username = jwtTokenUtil.extractUsername(jwt);  // This can throw SignatureException
-          logger.debug("Extracted username from JWT: {}", username);
-        } catch (JwtException e) {  // Catch all JWT issues (includes SignatureException)
-          String partialJwt = jwt.substring(0, Math.min(20, jwt.length()));
-          logger.warn("Invalid JWT token (partial: {}...) – {}", partialJwt, e.getMessage());
-          response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);  // Return 401
-          response.setContentType("application/json");
-          response.getWriter().write("{\"error\":\"Invalid or expired token\"}");  // JSON response
-          return;  // Stop chain – don't proceed to controller
-        }
-      } else {
-        logger.debug("Empty JWT after stripping Bearer");
-      }
-    } else {
-      logger.debug("No Authorization header or not Bearer");
-=======
       username = jwtTokenUtil.extractUsername(jwt);
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
     }
 
     if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
@@ -87,27 +54,14 @@ public class JwtRequestFilter extends OncePerRequestFilter {
       UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
       if (jwtTokenUtil.validateToken(jwt, userDetails.getUsername())) {
-<<<<<<< HEAD
-        logger.debug("JWT validated for user: {}, authorities: {}", username, userDetails.getAuthorities());
-=======
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 
         UsernamePasswordAuthenticationToken authenticationToken =
             new UsernamePasswordAuthenticationToken(
                 userDetails, null, userDetails.getAuthorities());
         authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-<<<<<<< HEAD
-      } else {
-        logger.warn("JWT validation failed for username: {}", username);
-=======
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
       }
     }
     chain.doFilter(request, response);
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d

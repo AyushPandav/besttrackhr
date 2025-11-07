@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -36,26 +35,6 @@ function Dailyattendance() {
       console.error("Error deleting record:", err);
       alert("Failed to delete record.");
     }
-=======
-import React, { useState } from "react";
-
-function Dailyattendance() {
-  // Example static data
-  const [attendance, setAttendance] = useState([
-    { id: 1, name: "John Doe", designation: "Software Engineer", status: "Present" },
-    { id: 2, name: "Jane Smith", designation: "UI/UX Designer", status: "Absent" },
-    { id: 3, name: "Mike Johnson", designation: "HR Manager", status: "Present" },
-    { id: 4, name: "Emily Davis", designation: "Intern", status: "Late" }
-  ]);
-
-  // Handle status change
-  const handleStatusChange = (id, newStatus) => {
-    setAttendance((prev) =>
-      prev.map((emp) =>
-        emp.id === id ? { ...emp, status: newStatus } : emp
-      )
-    );
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
   };
 
   return (
@@ -63,7 +42,9 @@ function Dailyattendance() {
       {/* Sidebar */}
       <div className="sidebar">
         <div className="logo">
-          <h1>HR<span>Panel</span></h1>
+          <h1>
+            HR<span>Panel</span>
+          </h1>
         </div>
         <div className="nav-menu">
           <div className="menu-heading">Main</div>
@@ -81,7 +62,6 @@ function Dailyattendance() {
           </div>
           <div className="nav-item">
             <Link to="/hradmin/arrangecalender">
-<<<<<<< HEAD
               <i className="fas fa-calendar-alt"></i>
               <span>Arrange Calendar</span>
             </Link>
@@ -90,23 +70,6 @@ function Dailyattendance() {
           <div className="nav-item active">
             <Link to="/hradmin/dailyattendance">
               <i className="fas fa-check-circle"></i>
-=======
-              <i className="fas fa-boxes"></i>
-              <span>Arrange Calender</span>
-            </Link>
-          </div>
-          <div className="nav-item">
-            <Link to="/hradmin/groupchat">
-              <i className="fas fa-boxes"></i>
-              <span>Group Chat</span>
-            </Link>
-          </div>
-
-          <div className="menu-heading">Reports</div>
-          <div className="nav-item active">
-            <Link to="/hradmin/dailyattendance">
-              <i className="fas fa-boxes"></i>
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
               <span>Daily Attendance</span>
             </Link>
           </div>
@@ -116,23 +79,6 @@ function Dailyattendance() {
               <span>Daily Reports</span>
             </Link>
           </div>
-<<<<<<< HEAD
-=======
-
-          <div className="menu-heading">Admin</div>
-          <div className="nav-item">
-            <i className="fas fa-cog"></i>
-            <span>Settings</span>
-          </div>
-          <div className="nav-item">
-            <i className="fas fa-bell"></i>
-            <span>Notifications</span>
-          </div>
-          <div className="nav-item">
-            <i className="fas fa-shield-alt"></i>
-            <span>Security</span>
-          </div>
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
         </div>
       </div>
 
@@ -164,7 +110,6 @@ function Dailyattendance() {
       {/* Main Content */}
       <div className="main-content">
         <div className="page-title">
-<<<<<<< HEAD
           <div className="title">Work Timer Records</div>
         </div>
 
@@ -201,53 +146,6 @@ function Dailyattendance() {
               </tbody>
             </table>
           )}
-=======
-          <div className="title">Daily Attendance</div>
-          <div className="action-buttons">
-            <button className="btn btn-outline">
-              <i className="fas fa-download"></i> Export
-            </button>
-            <button className="btn btn-primary">
-              <i className="fas fa-plus"></i> Mark Attendance
-            </button>
-          </div>
-        </div>
-
-        {/* Attendance Table */}
-        <div className="attendance-table">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Designation</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {attendance.map((emp) => (
-                <tr key={emp.id}>
-                  <td>{emp.id}</td>
-                  <td>{emp.name}</td>
-                  <td>{emp.designation}</td>
-                  <td>
-                    <select
-                      className="form-select"
-                      value={emp.status}
-                      onChange={(e) =>
-                        handleStatusChange(emp.id, e.target.value)
-                      }
-                    >
-                      <option value="Present">Present</option>
-                      <option value="Absent">Absent</option>
-                      <option value="Late">Late</option>
-                    </select>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* Modern Register Page Styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -473,7 +473,7 @@
   .form-group input {
     padding: 0.875rem;
   }
-=======
+
 .register-page {
     display: flex
 ;
@@ -616,5 +616,7 @@
 /* Optional: space between the two radio options */
 .form-field label + label {
   margin-left: 1.5rem;
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
+
+}
+
 }

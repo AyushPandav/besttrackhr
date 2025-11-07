@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/
-         001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
-=======
-<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
@@ -26,34 +19,28 @@
     <relativePath/>
   </parent>
 
-  <!-- Using Java 11 -->
   <properties>
     <java.version>11</java.version>
   </properties>
 
   <dependencies>
-    <!-- Spring Boot Starter Web -->
+    <!-- Spring Boot Starters -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-    <!-- Spring Boot Starter Data JPA -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
     </dependency>
 
-<<<<<<< HEAD
-=======
-    <!-- Spring Boot Starter Data MongoDB -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-mongodb</artifactId>
     </dependency>
 
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
-    <!-- MySQL Connector -->
+    <!-- MySQL -->
     <dependency>
       <groupId>com.mysql</groupId>
       <artifactId>mysql-connector-j</artifactId>
@@ -61,14 +48,6 @@
       <scope>runtime</scope>
     </dependency>
 
-<<<<<<< HEAD
-    <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-webflux</artifactId>
-</dependency>
-
-=======
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
     <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -77,43 +56,20 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- Spring Boot Starter Security -->
+    <!-- Security -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
 
-<<<<<<< HEAD
-    <!-- JWT Dependencies (Modular JJWT 0.11.5 - REMOVED old monolithic jjwt 0.9.1 to avoid conflicts) -->
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-api</artifactId>
-      <version>0.11.5</version>
-    </dependency>
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-impl</artifactId>
-      <version>0.11.5</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-jackson</artifactId>  <!-- Assumes Jackson for JSON -->
-      <version>0.11.5</version>
-      <scope>runtime</scope>
-    </dependency>
-
-    <!-- Google ID Token Verification (unchanged) -->
-=======
-    <!-- JWT Dependencies -->
+    <!-- JWT -->
     <dependency>
       <groupId>io.jsonwebtoken</groupId>
       <artifactId>jjwt</artifactId>
       <version>0.9.1</version>
     </dependency>
 
-    <!-- Google ID Token Verification -->
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
+    <!-- Google Auth -->
     <dependency>
       <groupId>com.google.api-client</groupId>
       <artifactId>google-api-client</artifactId>
@@ -125,55 +81,47 @@
       <version>1.42.3</version>
     </dependency>
 
-    <!-- Spring Boot Starter Test -->
+    <!-- Tests -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
 
-    <!-- Faker for fake data generation -->
+    <!-- Utilities -->
     <dependency>
       <groupId>com.github.javafaker</groupId>
       <artifactId>javafaker</artifactId>
       <version>1.0.2</version>
     </dependency>
 
-    <!-- Springdoc OpenAPI UI -->
+    <!-- OpenAPI Docs -->
     <dependency>
       <groupId>org.springdoc</groupId>
       <artifactId>springdoc-openapi-ui</artifactId>
       <version>1.7.0</version>
     </dependency>
 
-    <!-- Spring Boot DevTools -->
+    <!-- DevTools -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <optional>true</optional>
     </dependency>
 
-<<<<<<< HEAD
-    <!-- MongoDB Driver (kept, but note: app primarily uses MySQL) -->
-=======
     <!-- MongoDB Driver -->
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
     <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>mongodb-driver-sync</artifactId>
     </dependency>
 
-<<<<<<< HEAD
-    <!-- Password Encoder (BCrypt) - Already included in spring-boot-starter-security, but explicit if needed -->
-=======
-    <!-- Password Encoder (BCrypt) -->
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
+    <!-- BCrypt -->
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-crypto</artifactId>
     </dependency>
 
-    <!-- H2 Database for testing -->
+    <!-- H2 (Testing) -->
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
@@ -183,13 +131,13 @@
 
   <build>
     <plugins>
-      <!-- Plugin: Spring Boot Maven Plugin -->
+      <!-- Spring Boot Plugin -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
 
-      <!-- Plugin: Maven Compiler Plugin -->
+      <!-- Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -213,9 +161,5 @@
       <url>https://maven.pkg.github.com/hoangsonww/Employee-Management-Fullstack-App</url>
     </repository>
   </distributionManagement>
-<<<<<<< HEAD
 
 </project>
-=======
-</project>
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d

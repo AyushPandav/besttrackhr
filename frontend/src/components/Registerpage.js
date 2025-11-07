@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Registerpage.css';
@@ -25,8 +24,7 @@ const RegisterPage = () => {
       ...prev,
       [name]: value
     }));
-    
-    // Clear error when user starts typing
+
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -74,7 +72,7 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -83,7 +81,7 @@ const RegisterPage = () => {
 
     try {
       const result = await authService.register({
-        email: formData.email, // Use email as the primary identifier
+        email: formData.email,
         password: formData.password,
         role: formData.role,
         name: formData.name,
@@ -91,20 +89,17 @@ const RegisterPage = () => {
       });
 
       if (result.success) {
-        // Registration successful, redirect to login
-        navigate('/loginpage', { 
-          state: { 
-            message: 'Registration successful! Please sign in with your credentials.' 
+        navigate('/loginpage', {
+          state: {
+            message: 'Registration successful! Please sign in with your credentials.'
           }
         });
       } else {
-        if (result.error.includes('already exists') || result.error.includes('User already exists')) {
-          setErrors({ 
+        if (result.error.includes('already exists')) {
+          setErrors({
             general: result.error + ' Please try logging in instead or use a different email.',
-            showLoginLink: true 
+            showLoginLink: true
           });
-        } else if (result.error.includes('Username already exists')) {
-          setErrors({ username: 'Username already exists' });
         } else {
           setErrors({ general: result.error || 'Registration failed. Please try again.' });
         }
@@ -126,13 +121,10 @@ const RegisterPage = () => {
     setErrors({});
 
     try {
-      // Simulate Google OAuth flow
       const googleUser = await simulateGoogleSignUp();
-      
       const result = await authService.googleLogin(googleUser.idToken, formData.role);
 
       if (result.success) {
-        // Navigate based on role
         navigate(authService.getRedirectPath());
       } else {
         setErrors({ general: result.error || 'Google sign-up failed. Please try again.' });
@@ -203,11 +195,15 @@ const RegisterPage = () => {
               <span>{errors.general}</span>
               {errors.showLoginLink && (
                 <div style={{ marginTop: '10px' }}>
-                  <Link to="/loginpage" className="login-link" style={{ 
-                    color: '#4CAF50', 
-                    textDecoration: 'underline',
-                    fontWeight: 'bold'
-                  }}>
+                  <Link
+                    to="/loginpage"
+                    className="login-link"
+                    style={{
+                      color: '#4CAF50',
+                      textDecoration: 'underline',
+                      fontWeight: 'bold'
+                    }}
+                  >
                     Click here to sign in instead
                   </Link>
                 </div>
@@ -337,19 +333,9 @@ const RegisterPage = () => {
               {errors.role && <span className="error-text">{errors.role}</span>}
             </div>
 
-            <button
-              type="submit"
-              className="register-btn"
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <div className="spinner"></div>
-              ) : (
-                <i className="bi bi-person-plus-fill"></i>
-              )}
-              <span>
-                {isLoading ? 'Creating Account...' : 'Create Account'}
-              </span>
+            <button type="submit" className="register-btn" disabled={isLoading}>
+              {isLoading ? <div className="spinner"></div> : <i className="bi bi-person-plus-fill"></i>}
+              <span>{isLoading ? 'Creating Account...' : 'Create Account'}</span>
             </button>
           </form>
 
@@ -362,14 +348,8 @@ const RegisterPage = () => {
             onClick={handleGoogleSignUp}
             disabled={isLoading}
           >
-            {isLoading ? (
-              <div className="spinner"></div>
-            ) : (
-              <i className="bi bi-google"></i>
-            )}
-            <span>
-              {isLoading ? 'Signing up...' : 'Sign up with Google'}
-            </span>
+            {isLoading ? <div className="spinner"></div> : <i className="bi bi-google"></i>}
+            <span>{isLoading ? 'Signing up...' : 'Sign up with Google'}</span>
           </button>
 
           <div className="register-footer">
@@ -381,51 +361,6 @@ const RegisterPage = () => {
             </p>
           </div>
         </div>
-=======
-import React from "react";
-import "./Registerpage.css"; // 👈 put your styles here
-
-const RegisterPage = () => {
-  return (
-    <div className="register-page">
-      <div className="hero-background"></div>
-      <div className="auth-form">
-        <h1 className="form-title">REGISTER</h1>
-
-        <div className="form-field">
-          <input type="text" placeholder="E-mail or Username" />
-        </div>
-
-         <div className="form-field">
-          <input type="tel" placeholder="Enter the password" />
-        </div>
-
-        <div className="form-field">
-  <label>
-    <input type="radio" name="role" value="employee" defaultChecked />
-    Employee
-  </label>
-  <label style={{ marginLeft: '1rem' }}>
-    <input type="radio" name="role" value="hr" />
-    HR
-  </label>
-</div>
-
-        <button className="primary-button">NEXT</button>
-
-        <div className="divider-line">
-          <span className="divider-text">OR WITH</span>
-        </div>
-
-        <div className="social-container">
-          <button className="social-button">SIGN UP</button>
-          <button className="social-button">SIGN UP</button>
-        </div>
-
-        <a href="/loginpage" className="login-link">
-          Have an account? Sign in
-        </a>
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
       </div>
     </div>
   );

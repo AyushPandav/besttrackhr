@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
@@ -7,7 +6,8 @@ function Dailyreport() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const SPRING_BOOT_URL = "https://6908f1ab2d902d0651b237fc.mockapi.io/daily-report"; // Using your mock API
+  const SPRING_BOOT_URL =
+    "https://6908f1ab2d902d0651b237fc.mockapi.io/daily-report"; // Using your mock API
 
   // Fetch reports from MockAPI
   useEffect(() => {
@@ -27,117 +27,66 @@ function Dailyreport() {
 
     fetchReports();
   }, []);
-=======
-
-import { Link } from "react-router-dom";
-import React, { useState } from "react";
-
-function Dailyreport() {
-const [date, setDate] = useState("");
-  const [text, setText] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Selected Date:", date);
-    console.log("Entered Text:", text);
-    alert(`Date: ${date} | Text: ${text}`);
-  };
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
 
   return (
     <div className="containers">
       {/* Sidebar */}
       <div className="sidebar">
         <div className="logo">
-<<<<<<< HEAD
           <h1>
             HR<span>Panel</span>
           </h1>
         </div>
+
         <div className="nav-menu">
           <div className="menu-heading">Main</div>
+
           <div className="nav-item">
             <Link to="/hradmin/hradminpage">
               <i className="fas fa-chart-pie"></i>
               <span>Dashboard</span>
             </Link>
           </div>
+
           <div className="nav-item">
             <Link to="/hradmin/addusers">
               <i className="fas fa-users"></i>
               <span>Add / Del Users</span>
             </Link>
           </div>
+
           <div className="nav-item">
             <Link to="/hradmin/arrangecalender">
-              <i className="fas fa-boxes"></i>
-              <span>Arrange Calender</span>
+              <i className="fas fa-calendar-alt"></i>
+              <span>Arrange Calendar</span>
             </Link>
           </div>
+
           <div className="nav-item">
             <Link to="/hradmin/dailyattendance">
-              <i className="fas fa-boxes"></i>
+              <i className="fas fa-comments"></i>
               <span>Group Chat</span>
             </Link>
           </div>
 
           <div className="menu-heading">Reports</div>
+
           <div className="nav-item">
             <Link to="/hradmin/dailyattendance">
-              <i className="fas fa-boxes"></i>
+              <i className="fas fa-check-circle"></i>
               <span>Daily Attendance</span>
             </Link>
           </div>
+
           <div className="nav-item active">
             <Link to="/hradmin/dailyreport">
-              <i className="fas fa-boxes"></i>
+              <i className="fas fa-file-alt"></i>
               <span>Daily Reports</span>
             </Link>
-=======
-          <h1>HR<span>Panel</span></h1>
-        </div>
-        <div className="nav-menu">
-          <div className="menu-heading">Main</div>
-          <div className="nav-item active">
-                      <Link to="/hradmin/hradminpage">
-                                <i className="fas fa-chart-pie"></i>
-                                <span>Dashboard</span>
-                              </Link>
-                    </div>
-                    <div className="nav-item">
-                      <Link to="/hradmin/addusers" >
-                                <i className="fas fa-users"></i>
-                                <span>Add / Del Users</span>
-                              </Link>
-                    </div>
-                    <div className="nav-item">
-                      <Link to="/hradmin/arrangecalender" >
-                                <i className="fas fa-boxes"></i>
-                                <span>Arrange Calender</span>
-                              </Link>
-                    </div>
-                    <div className="nav-item">
-                      <Link to="/hradmin/dailyattendance" >
-                                <i className="fas fa-boxes"></i>
-                                <span>Group Chat</span>
-                              </Link>
-                    </div>
-
-          <div className="menu-heading">Reports</div>
-          <div className="nav-item active">
-                      <Link to="/hradmin/dailyattendance">
-                        <i className="fas fa-boxes"></i>
-                        <span>Daily Attendance</span>
-                      </Link>
-                    </div>
-                    <div className="nav-item">
-                      <Link to="/hradmin/dailyreport">
-                        <i className="fas fa-boxes"></i>
-                        <span>Daily Reports</span>
-                      </Link>
-                    </div>
+          </div>
 
           <div className="menu-heading">Admin</div>
+
           <div className="nav-item">
             <i className="fas fa-cog"></i>
             <span>Settings</span>
@@ -149,7 +98,6 @@ const [date, setDate] = useState("");
           <div className="nav-item">
             <i className="fas fa-shield-alt"></i>
             <span>Security</span>
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
           </div>
         </div>
       </div>
@@ -193,7 +141,6 @@ const [date, setDate] = useState("");
           </div>
         </div>
 
-<<<<<<< HEAD
         {/* Daily Reports Table */}
         <div className="card shadow-sm mt-4">
           <div className="card-body">
@@ -234,17 +181,3 @@ const [date, setDate] = useState("");
 }
 
 export default Dailyreport;
-=======
-        {/* Stats Cards */}
-
-        
-
-        {/* Recent Orders */}
-        
-      </div>
-    </div>
-  )
-}
-
-export default Dailyreport
->>>>>>> f4d881223632636ee078eaa1e2745af6795c2e3d
